@@ -438,21 +438,23 @@
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">4. Statistics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-statistics-manual">2.10 Contoh Perhitungan Statistics Manual</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min"><strong>1. Min</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max"><strong>2. Max</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean"><strong>3. Mean</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#std-deviation"><strong>4. Std. Deviation</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance"><strong>5. Variance</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness"><strong>6. Skewness</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis"><strong>7. Kurtosis</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-sum"><strong>8. Overall Sum</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-missing"><strong>9. No. Missing</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-nans"><strong>10. No. NaNs</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-s"><strong>11. No. +∞s</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>12. No. -∞s</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median"><strong>13. Median</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#row-count"><strong>14. Row Count</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-statistics-manual">2.10 Contoh Perhitungan Statistics Manual</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#min"><strong>1. Min</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#max"><strong>2. Max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean"><strong>3. Mean</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#std-deviation"><strong>4. Std. Deviation</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variance"><strong>5. Variance</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness"><strong>6. Skewness</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis"><strong>7. Kurtosis</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-sum"><strong>8. Overall Sum</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no-missing"><strong>9. No. Missing</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no-nans"><strong>10. No. NaNs</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no-s"><strong>11. No. +∞s</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>12. No. -∞s</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#median"><strong>13. Median</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#row-count"><strong>14. Row Count</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -547,7 +549,7 @@
 <p>Batas wilayah kajian dibuat sebagai polygon GeoJSON melalui <a class="reference external" href="http://geojson.io">geojson.io</a>, mencakup wilayah Kabupaten Gresik. Polygon ini kemudian dibaca ulang di Python untuk dihitung bounding box-nya, yang menjadi acuan spasial pada saat data ditarik dari server Copernicus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>openeo<span class="w"> </span>netCDF4<span class="w"> </span>-q
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>openeo<span class="w"> </span>netCDF4<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>matplotlib<span class="w"> </span>-q
 </pre></div>
 </div>
 </div>
@@ -566,18 +568,6 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;matplotlib&#39;
 </pre></div>
 </div>
 </div>
@@ -634,7 +624,45 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using refresh token.
+<div class="output text_html">Visit <a href="https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=NBMB-WYBI" title="Authenticate at https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=NBMB-WYBI" target="_blank" rel="noopener noreferrer">https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=NBMB-WYBI</a> <a href="#" onclick="navigator.clipboard.writeText('https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=NBMB-WYBI');return false;" title="Copy authentication URL to clipboard">&#128203;</a> to authenticate.</div><div class="output text_html"><code>[##################################---]</code> ⌛ Authorization pending</div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.dataspace.copernicus.eu&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+
+<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/openeo/rest/connection.py:697,</span> in <span class="ni">Connection.authenticate_oidc</span><span class="nt">(self, provider_id, client_id, client_secret, store_refresh_token, use_pkce, display, max_poll_time)</span>
+<span class="g g-Whitespace">    </span><span class="mi">693</span> <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Trying device code flow.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">694</span> <span class="n">authenticator</span> <span class="o">=</span> <span class="n">OidcDeviceAuthenticator</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">695</span>     <span class="n">client_info</span><span class="o">=</span><span class="n">client_info</span><span class="p">,</span> <span class="n">use_pkce</span><span class="o">=</span><span class="n">use_pkce</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="n">display</span><span class="p">,</span> <span class="n">max_poll_time</span><span class="o">=</span><span class="n">max_poll_time</span>
+<span class="g g-Whitespace">    </span><span class="mi">696</span> <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">697</span> <span class="n">con</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authenticate_oidc</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span>     <span class="n">authenticator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">699</span>     <span class="n">provider_id</span><span class="o">=</span><span class="n">provider_id</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>     <span class="n">store_refresh_token</span><span class="o">=</span><span class="n">store_refresh_token</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>     <span class="c1"># TODO: expose `auto_renew_from_refresh_token` directly as option instead of reusing `store_refresh_token` arg?</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="n">auto_renew_from_refresh_token</span><span class="o">=</span><span class="n">store_refresh_token</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authenticated using device code flow.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="k">return</span> <span class="n">con</span>
+
+<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/openeo/rest/connection.py:413,</span> in <span class="ni">Connection._authenticate_oidc</span><span class="nt">(self, authenticator, provider_id, store_refresh_token, auto_renew_from_refresh_token, fallback_refresh_token, oidc_auth_renewer)</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span><span class="sd"> Authenticate through OIDC and set up bearer token (based on OIDC access_token) for further requests.</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span> <span class="n">request_refresh_token</span> <span class="o">=</span> <span class="n">store_refresh_token</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">oidc_auth_renewer</span> <span class="ow">and</span> <span class="n">auto_renew_from_refresh_token</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">413</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">authenticator</span><span class="o">.</span><span class="n">get_tokens</span><span class="p">(</span><span class="n">request_refresh_token</span><span class="o">=</span><span class="n">request_refresh_token</span><span class="p">)</span>
+<span class="nn">    414 _log.info(&quot;Obtained tokens: {t}&quot;.format(t=[k for k, v</span> in <span class="ni">tokens._asdict().items</span><span class="nt">() if v]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> <span class="n">refresh_token</span> <span class="o">=</span> <span class="n">tokens</span><span class="o">.</span><span class="n">refresh_token</span> <span class="ow">or</span> <span class="n">fallback_refresh_token</span>
+
+<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/openeo/rest/auth/oidc.py:928,</span> in <span class="ni">OidcDeviceAuthenticator.get_tokens</span><span class="nt">(self, request_refresh_token)</span>
+<span class="g g-Whitespace">    </span><span class="mi">926</span> <span class="k">while</span> <span class="n">elapsed</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_poll_time</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">927</span>     <span class="n">poll_ui</span><span class="o">.</span><span class="n">show_progress</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">928</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">930</span>     <span class="k">if</span> <span class="n">elapsed</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">next_poll</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">931</span>         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">932</span>             <span class="sa">f</span><span class="s2">&quot;Doing </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">grant_type</span><span class="si">!r}</span><span class="s2"> token request </span><span class="si">{</span><span class="n">token_endpoint</span><span class="si">!r}</span><span class="s2"> with post data fields </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">post_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">!r}</span><span class="s2"> (client_id </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="si">!r}</span><span class="s2">)&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">933</span>         <span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -1786,9 +1814,8 @@ memory usage: 20.1 KB
 <section id="contoh-perhitungan-statistics-manual">
 <h3>2.10 Contoh Perhitungan Statistics Manual<a class="headerlink" href="#contoh-perhitungan-statistics-manual" title="Link to this heading">#</a></h3>
 <p>Sebagai contoh, perhitungan dilakukan menggunakan 5 data polutan <strong>CO</strong>, yaitu <strong>0,027; 0,024; 0,025; 0,024; dan 0,029</strong>.</p>
-</section>
 <section id="min">
-<h3><strong>1. Min</strong><a class="headerlink" href="#min" title="Link to this heading">#</a></h3>
+<h4><strong>1. Min</strong><a class="headerlink" href="#min" title="Link to this heading">#</a></h4>
 <p>Nilai minimum merupakan nilai terkecil dari seluruh data.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1801,7 +1828,7 @@ memory usage: 20.1 KB
 <p><strong>Hasil: Min = 0,024</strong></p>
 </section>
 <section id="max">
-<h3><strong>2. Max</strong><a class="headerlink" href="#max" title="Link to this heading">#</a></h3>
+<h4><strong>2. Max</strong><a class="headerlink" href="#max" title="Link to this heading">#</a></h4>
 <p>Nilai maksimum merupakan nilai terbesar dari seluruh data.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1814,7 +1841,7 @@ memory usage: 20.1 KB
 <p><strong>Hasil: Max = 0,029</strong></p>
 </section>
 <section id="mean">
-<h3><strong>3. Mean</strong><a class="headerlink" href="#mean" title="Link to this heading">#</a></h3>
+<h4><strong>3. Mean</strong><a class="headerlink" href="#mean" title="Link to this heading">#</a></h4>
 <p>Mean merupakan nilai rata-rata dari seluruh data.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1829,7 +1856,7 @@ memory usage: 20.1 KB
 <p><strong>Hasil: Mean = 0,0258</strong></p>
 </section>
 <section id="std-deviation">
-<h3><strong>4. Std. Deviation</strong><a class="headerlink" href="#std-deviation" title="Link to this heading">#</a></h3>
+<h4><strong>4. Std. Deviation</strong><a class="headerlink" href="#std-deviation" title="Link to this heading">#</a></h4>
 <p>Standar deviasi menunjukkan tingkat penyebaran data terhadap nilai rata-rata.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1843,7 +1870,7 @@ s = \sqrt{0,00000376}
 <p><strong>Hasil: Std. Deviation ≈ 0,00194</strong></p>
 </section>
 <section id="variance">
-<h3><strong>5. Variance</strong><a class="headerlink" href="#variance" title="Link to this heading">#</a></h3>
+<h4><strong>5. Variance</strong><a class="headerlink" href="#variance" title="Link to this heading">#</a></h4>
 <p>Variance merupakan ukuran penyebaran data yang diperoleh dari kuadrat standar deviasi.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1856,7 +1883,7 @@ s^2 = 0,00000376
 <p><strong>Hasil: Variance = 0,00000376</strong></p>
 </section>
 <section id="skewness">
-<h3><strong>6. Skewness</strong><a class="headerlink" href="#skewness" title="Link to this heading">#</a></h3>
+<h4><strong>6. Skewness</strong><a class="headerlink" href="#skewness" title="Link to this heading">#</a></h4>
 <p>Skewness menunjukkan tingkat kemiringan distribusi data terhadap nilai rata-ratanya.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1869,7 +1896,7 @@ s^2 = 0,00000376
 <p>Hasil perhitungan menunjukkan nilai skewness berdasarkan distribusi kelima data tersebut.</p>
 </section>
 <section id="kurtosis">
-<h3><strong>7. Kurtosis</strong><a class="headerlink" href="#kurtosis" title="Link to this heading">#</a></h3>
+<h4><strong>7. Kurtosis</strong><a class="headerlink" href="#kurtosis" title="Link to this heading">#</a></h4>
 <p>Kurtosis menunjukkan tingkat keruncingan atau bentuk distribusi data.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1883,7 +1910,7 @@ s^2 = 0,00000376
 <p>Nilai kurtosis menunjukkan karakteristik distribusi data dibandingkan dengan distribusi normal.</p>
 </section>
 <section id="overall-sum">
-<h3><strong>8. Overall Sum</strong><a class="headerlink" href="#overall-sum" title="Link to this heading">#</a></h3>
+<h4><strong>8. Overall Sum</strong><a class="headerlink" href="#overall-sum" title="Link to this heading">#</a></h4>
 <p>Overall sum merupakan jumlah seluruh nilai data.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1898,7 +1925,7 @@ s^2 = 0,00000376
 <p><strong>Hasil: Overall Sum = 0,129</strong></p>
 </section>
 <section id="no-missing">
-<h3><strong>9. No. Missing</strong><a class="headerlink" href="#no-missing" title="Link to this heading">#</a></h3>
+<h4><strong>9. No. Missing</strong><a class="headerlink" href="#no-missing" title="Link to this heading">#</a></h4>
 <p>No. missing menunjukkan jumlah data yang kosong atau tidak memiliki nilai.</p>
 <p>Pada contoh terdapat 5 data dan semuanya memiliki nilai.</p>
 <div class="math notranslate nohighlight">
@@ -1908,7 +1935,7 @@ s^2 = 0,00000376
 <p><strong>Hasil: No. Missing = 0</strong></p>
 </section>
 <section id="no-nans">
-<h3><strong>10. No. NaNs</strong><a class="headerlink" href="#no-nans" title="Link to this heading">#</a></h3>
+<h4><strong>10. No. NaNs</strong><a class="headerlink" href="#no-nans" title="Link to this heading">#</a></h4>
 <p>No. NaNs menunjukkan jumlah data yang memiliki nilai <strong>NaN (Not a Number)</strong>.</p>
 <p>Pada contoh tidak terdapat nilai NaN.</p>
 <div class="math notranslate nohighlight">
@@ -1918,7 +1945,7 @@ s^2 = 0,00000376
 <p><strong>Hasil: No. NaNs = 0</strong></p>
 </section>
 <section id="no-s">
-<h3><strong>11. No. +∞s</strong><a class="headerlink" href="#no-s" title="Link to this heading">#</a></h3>
+<h4><strong>11. No. +∞s</strong><a class="headerlink" href="#no-s" title="Link to this heading">#</a></h4>
 <p>No. +∞s menunjukkan jumlah data yang memiliki nilai positif tak hingga (+∞).</p>
 <p>Pada contoh tidak terdapat nilai +∞.</p>
 <div class="math notranslate nohighlight">
@@ -1928,7 +1955,7 @@ s^2 = 0,00000376
 <p><strong>Hasil: No. +∞s = 0</strong></p>
 </section>
 <section id="id1">
-<h3><strong>12. No. -∞s</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<h4><strong>12. No. -∞s</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>No. -∞s menunjukkan jumlah data yang memiliki nilai negatif tak hingga (-∞).</p>
 <p>Pada contoh tidak terdapat nilai -∞.</p>
 <div class="math notranslate nohighlight">
@@ -1938,7 +1965,7 @@ s^2 = 0,00000376
 <p><strong>Hasil: No. -∞s = 0</strong></p>
 </section>
 <section id="median">
-<h3><strong>13. Median</strong><a class="headerlink" href="#median" title="Link to this heading">#</a></h3>
+<h4><strong>13. Median</strong><a class="headerlink" href="#median" title="Link to this heading">#</a></h4>
 <p>Median merupakan nilai tengah setelah data diurutkan.</p>
 <p>Data setelah diurutkan:</p>
 <div class="math notranslate nohighlight">
@@ -1952,13 +1979,14 @@ s^2 = 0,00000376
 <p><strong>Hasil: Median = 0,025</strong></p>
 </section>
 <section id="row-count">
-<h3><strong>14. Row Count</strong><a class="headerlink" href="#row-count" title="Link to this heading">#</a></h3>
+<h4><strong>14. Row Count</strong><a class="headerlink" href="#row-count" title="Link to this heading">#</a></h4>
 <p>Row count menunjukkan jumlah baris atau jumlah data yang dianalisis.</p>
 <div class="math notranslate nohighlight">
 \[
 \text{Row Count} = n = 5
 \]</div>
 <p><strong>Hasil: Row Count = 5</strong></p>
+</section>
 </section>
 </section>
 </section>
@@ -2044,21 +2072,23 @@ s^2 = 0,00000376
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">4. Statistics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-statistics-manual">2.10 Contoh Perhitungan Statistics Manual</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min"><strong>1. Min</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max"><strong>2. Max</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean"><strong>3. Mean</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#std-deviation"><strong>4. Std. Deviation</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance"><strong>5. Variance</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness"><strong>6. Skewness</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis"><strong>7. Kurtosis</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-sum"><strong>8. Overall Sum</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-missing"><strong>9. No. Missing</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-nans"><strong>10. No. NaNs</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-s"><strong>11. No. +∞s</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>12. No. -∞s</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median"><strong>13. Median</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#row-count"><strong>14. Row Count</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-statistics-manual">2.10 Contoh Perhitungan Statistics Manual</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#min"><strong>1. Min</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#max"><strong>2. Max</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean"><strong>3. Mean</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#std-deviation"><strong>4. Std. Deviation</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variance"><strong>5. Variance</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness"><strong>6. Skewness</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis"><strong>7. Kurtosis</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-sum"><strong>8. Overall Sum</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no-missing"><strong>9. No. Missing</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no-nans"><strong>10. No. NaNs</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no-s"><strong>11. No. +∞s</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>12. No. -∞s</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#median"><strong>13. Median</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#row-count"><strong>14. Row Count</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
