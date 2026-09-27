@@ -1,0 +1,143 @@
+Traceback (most recent call last):
+  File "/usr/local/python/3.14.2/lib/python3.14/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/codespace/.local/lib/python3.14/site-packages/nbclient/client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/codespace/.local/lib/python3.14/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/local/python/3.14.2/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/codespace/.local/lib/python3.14/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/home/codespace/.local/lib/python3.14/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/codespace/.local/lib/python3.14/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+
+def evaluasi_cluster(file_csv, nama_polutan, n_dimensi_pca=37, k_range=range(2, 11)):
+    data = pd.read_csv(file_csv)
+
+    kolom_identitas = ["id", "nama", "daerah"]
+    identitas = data[kolom_identitas].copy()
+    X = data.drop(columns=kolom_identitas)
+
+    # Standardisasi fitur (kondisi tanpa PCA, 68 fitur)
+    X_scaled = StandardScaler().fit_transform(X)
+
+    # Reduksi dimensi dengan PCA (kondisi dengan PCA, 37 komponen)
+    X_pca = PCA(n_components=n_dimensi_pca, random_state=42).fit_transform(X_scaled)
+
+    def _evaluasi_kmeans(X_input):
+        inertia, silhouette = [], []
+        for k in k_range:
+            model = KMeans(
+                n_clusters=k,
+                n_init=10,
+                random_state=42
+            )
+            label = model.fit_predict(X_input)
+            inertia.append(model.inertia_)
+            silhouette.append(silhouette_score(X_input, label))
+
+        return pd.DataFrame({
+            "K": list(k_range),
+            "Inertia": inertia,
+            "Silhouette": silhouette
+        })
+
+    # Evaluasi K=2..10 pada kedua kondisi
+    hasil_tanpa_pca = _evaluasi_kmeans(X_scaled)
+    hasil_dengan_pca = _evaluasi_kmeans(X_pca)
+
+    k_tanpa_pca = int(
+        hasil_tanpa_pca.loc[hasil_tanpa_pca["Silhouette"].idxmax(), "K"]
+    )
+    k_dengan_pca = int(
+        hasil_dengan_pca.loc[hasil_dengan_pca["Silhouette"].idxmax(), "K"]
+    )
+
+    print(f"\n=== Evaluasi Cluster {nama_polutan} - TANPA PCA ({X_scaled.shape[1]} fitur) ===")
+    print(hasil_tanpa_pca.to_string(index=False))
+    print(f"K dengan Silhouette Score tertinggi (tanpa PCA): {k_tanpa_pca}")
+
+    print(f"\n=== Evaluasi Cluster {nama_polutan} - DENGAN PCA ({X_pca.shape[1]} komponen) ===")
+    print(hasil_dengan_pca.to_string(index=False))
+    print(f"K dengan Silhouette Score tertinggi (dengan PCA): {k_dengan_pca}")
+
+    # Visualisasi Elbow Method & Silhouette Score untuk kedua kondisi
+    def _plot_evaluasi(hasil, judul):
+        fig, axes = plt.subplots(1, 2, figsize=(12, 4.5))
+
+        axes[0].plot(
+            hasil["K"],
+            hasil["Inertia"],
+            marker="o",
+            linestyle="--"
+        )
+        axes[0].set_title(f"Elbow Method - {judul}")
+        axes[0].set_xlabel("Jumlah Cluster (K)")
+        axes[0].set_ylabel("Inertia")
+        axes[0].grid(True)
+
+        axes[1].plot(
+            hasil["K"],
+            hasil["Silhouette"],
+            marker="o",
+            linestyle="--"
+        )
+        axes[1].set_title(f"Silhouette Score - {judul}")
+        axes[1].set_xlabel("Jumlah Cluster (K)")
+        axes[1].set_ylabel("Silhouette Score")
+        axes[1].grid(True)
+
+        plt.tight_layout()
+        plt.show()
+
+    _plot_evaluasi(hasil_tanpa_pca, f"{nama_polutan} - Tanpa PCA")
+    _plot_evaluasi(hasil_dengan_pca, f"{nama_polutan} - Dengan PCA ({n_dimensi_pca} Komponen)")
+
+    return {
+        "identitas": identitas,
+        "X_scaled": X_scaled,
+        "X_pca": X_pca,
+        "hasil_tanpa_pca": hasil_tanpa_pca,
+        "hasil_dengan_pca": hasil_dengan_pca,
+        "k_tanpa_pca": k_tanpa_pca,
+        "k_dengan_pca": k_dengan_pca,
+    }
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 2[39m
+[32m      1[39m [38;5;28;01mimport[39;00m pandas [38;5;28;01mas[39;00m pd
+[32m----> [39m[32m2[39m [38;5;28;01mimport[39;00m matplotlib.pyplot [38;5;28;01mas[39;00m plt
+[32m      3[39m [38;5;28;01mfrom[39;00m sklearn.preprocessing [38;5;28;01mimport[39;00m StandardScaler
+[32m      4[39m [38;5;28;01mfrom[39;00m sklearn.decomposition [38;5;28;01mimport[39;00m PCA
+[32m      5[39m [38;5;28;01mfrom[39;00m sklearn.cluster [38;5;28;01mimport[39;00m KMeans
+
+[31mModuleNotFoundError[39m: No module named 'matplotlib'
+
