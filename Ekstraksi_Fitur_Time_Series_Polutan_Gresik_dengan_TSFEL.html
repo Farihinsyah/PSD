@@ -66,7 +66,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="KMeans Clustering Polutan di Gresik" href="KMeans_Clustering_Polutan_Gresik.html" />
+    <link rel="next" title="K-Means Clustering Polutan Gresik" href="KMeans_Clustering_Polutan_Gresik.html" />
     <link rel="prev" title="Crawling &amp; Analisis Data Polutan Udara di Kecamatan Gresik" href="Crawling_Polutan_Kecamatan_Gresik.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -224,9 +224,10 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Crawling_Polutan_Kecamatan_Gresik.html">Crawling &amp; Analisis Data Polutan Udara di Kecamatan Gresik</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Ekstraksi Fitur Time Series Polutan Udara dengan TSFEL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="KMeans_Clustering_Polutan_Gresik.html">KMeans Clustering Polutan di Gresik</a></li>
+<li class="toctree-l2"><a class="reference internal" href="KMeans_Clustering_Polutan_Gresik.html">K-Means Clustering Polutan Gresik</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="Klasifikasi_Sawah_Sentinel2A.html">Klasifikasi Sawah dan Non-Sawah Menggunakan Citra Sentinel-2A dengan Random Forest</a></li>
 </ul>
 
     </div>
@@ -457,12 +458,7 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation-deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan">2. Data Preparation: Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-no2">2.1 Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan NO2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-co">2.2 Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan CO</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-so2">2.3 Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan SO2</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation-deteksi-outlier-imputasi-missing-value-interpolasi-dan-ekstraksi-fitur-polutan">2. Data Preparation: Deteksi Outlier, Imputasi Missing Value, Interpolasi, dan Ekstraksi Fitur Polutan</a></li>
 </ul>
             </nav>
         </div>
@@ -880,7 +876,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">LOKASI_DATA</span> <span class="o">=</span> <span class="s2">"polutan_gresik_timeseries.csv"</span>
 
@@ -899,16 +894,72 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">LOKASI_DATA</span> <span class="o">=</span> <span class="s2">"polutan_gresik_timeseries.csv"</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">LOKASI_DATA</span> <span class="o">=</span> <span class="s2">"polutan_gresik_timeseries.csv"</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">LOKASI_DATA</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> 
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">df</span><span class="p">[</span><span class="s2">"date"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"date"</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"date"</span><span class="p">)</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named 'matplotlib'
+<span class="nn">File /usr/local/python/3.14.2/lib/python3.14/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File /usr/local/python/3.14.2/lib/python3.14/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"names"</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File /usr/local/python/3.14.2/lib/python3.14/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">"has_index_names"</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">"has_index_names"</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File /usr/local/python/3.14.2/lib/python3.14/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">"b"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">"b"</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"encoding"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"compression"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"memory_map"</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"encoding_errors"</span><span class="p">,</span> <span class="s2">"strict"</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"storage_options"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File /usr/local/python/3.14.2/lib/python3.14/site-packages/pandas/io/common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support 'encoding' and 'newline'.</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">"b"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: 'polutan_gresik_timeseries.csv'
 </pre></div>
 </div>
 </div>
@@ -982,21 +1033,21 @@
   <tbody>
     <tr>
       <th>NO2</th>
-      <td>195</td>
+      <td>178</td>
     </tr>
     <tr>
       <th>SO2</th>
-      <td>151</td>
+      <td>147</td>
     </tr>
     <tr>
       <th>CO</th>
-      <td>166</td>
+      <td>158</td>
     </tr>
   </tbody>
 </table>
-</div><br><label><b>dtype:</b> int64</label></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NO2: n=366, min=8.48615491122e-06, max=0.000110585489892
+</div><br><label><b>dtype:</b> int64</label></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NO2: n=366, min=8.48615491122e-06, max=0.000123973091831
 SO2: n=366, min=-0.000616634613834, max=0.000835011538584
-CO: n=366, min=0.0210837982595, max=0.0376965887845
+CO: n=366, min=0.0193852093071, max=0.0385898947716
 </pre></div>
 </div>
 </div>
@@ -1132,7 +1183,7 @@ ecdf\_slope =
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-2760c96e-760f-4bdc-aedc-cbdd4158bfaa" class="colab-df-container">
+  <div id="df-a0766095-2923-4bdf-b3ee-8bf2ddedca10" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1167,9 +1218,9 @@ ecdf\_slope =
       <td>366</td>
       <td>0.5</td>
       <td>0.75</td>
-      <td>0.000059197691206</td>
-      <td>0.000069871275628</td>
-      <td>23422.309705949122872</td>
+      <td>0.000060</td>
+      <td>0.000071</td>
+      <td>23789.873695</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1177,9 +1228,9 @@ ecdf\_slope =
       <td>366</td>
       <td>0.5</td>
       <td>0.75</td>
-      <td>0.000130338055896</td>
-      <td>0.000295632554399</td>
-      <td>1512.452031159700937</td>
+      <td>0.000130</td>
+      <td>0.000296</td>
+      <td>1512.452031</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1187,9 +1238,9 @@ ecdf\_slope =
       <td>366</td>
       <td>0.5</td>
       <td>0.75</td>
-      <td>0.028473624959588</td>
-      <td>0.030595061870722</td>
-      <td>117.844654577265800</td>
+      <td>0.028474</td>
+      <td>0.030595</td>
+      <td>117.844655</td>
     </tr>
   </tbody>
 </table>
@@ -1197,7 +1248,7 @@ ecdf\_slope =
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-2760c96e-760f-4bdc-aedc-cbdd4158bfaa')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a0766095-2923-4bdf-b3ee-8bf2ddedca10')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -1249,12 +1300,12 @@ ecdf\_slope =
 
     <script>
       const buttonEl =
-        document.querySelector('#df-2760c96e-760f-4bdc-aedc-cbdd4158bfaa button.colab-df-convert');
+        document.querySelector('#df-a0766095-2923-4bdf-b3ee-8bf2ddedca10 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-2760c96e-760f-4bdc-aedc-cbdd4158bfaa');
+        const element = document.querySelector('#df-a0766095-2923-4bdf-b3ee-8bf2ddedca10');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1274,7 +1325,7 @@ ecdf\_slope =
   </div>
 
 
-  <div id="id_255d77a2-7455-48e5-82ff-9ac6221d8830">
+  <div id="id_f54fe054-69db-4fdb-9560-0b37c69a2af6">
     <style>
       .colab-df-generate {
         background-color: #E8F0FE;
@@ -1318,7 +1369,7 @@ ecdf\_slope =
     <script>
       (() => {
       const buttonEl =
-        document.querySelector('#id_255d77a2-7455-48e5-82ff-9ac6221d8830 button.colab-df-generate');
+        document.querySelector('#id_f54fe054-69db-4fdb-9560-0b37c69a2af6 button.colab-df-generate');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
@@ -1371,7 +1422,7 @@ ecdf\_slope =
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-fcbb2547-f5b0-44a6-b480-448a20aa394c" class="colab-df-container">
+  <div id="df-29f0edc7-82b5-4dc9-80b1-a312d760fb6b" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1400,22 +1451,22 @@ ecdf\_slope =
     <tr>
       <th>0</th>
       <td>NO2</td>
-      <td>23422.309705949122872</td>
-      <td>23422.309705949122872</td>
+      <td>23789.873695</td>
+      <td>23789.873695</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>SO2</td>
-      <td>1512.452031159700937</td>
-      <td>1512.452031159700937</td>
+      <td>1512.452031</td>
+      <td>1512.452031</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>CO</td>
-      <td>117.844654577265800</td>
-      <td>117.844654577265800</td>
+      <td>117.844655</td>
+      <td>117.844655</td>
       <td>0.0</td>
     </tr>
   </tbody>
@@ -1424,7 +1475,7 @@ ecdf\_slope =
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-fcbb2547-f5b0-44a6-b480-448a20aa394c')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-29f0edc7-82b5-4dc9-80b1-a312d760fb6b')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -1476,12 +1527,12 @@ ecdf\_slope =
 
     <script>
       const buttonEl =
-        document.querySelector('#df-fcbb2547-f5b0-44a6-b480-448a20aa394c button.colab-df-convert');
+        document.querySelector('#df-29f0edc7-82b5-4dc9-80b1-a312d760fb6b button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-fcbb2547-f5b0-44a6-b480-448a20aa394c');
+        const element = document.querySelector('#df-29f0edc7-82b5-4dc9-80b1-a312d760fb6b');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1501,7 +1552,7 @@ ecdf\_slope =
   </div>
 
 
-  <div id="id_6f3ece51-5283-480a-85b3-6497786f2563">
+  <div id="id_9ee76ae0-7eed-4206-987a-a3befc7af562">
     <style>
       .colab-df-generate {
         background-color: #E8F0FE;
@@ -1545,7 +1596,7 @@ ecdf\_slope =
     <script>
       (() => {
       const buttonEl =
-        document.querySelector('#id_6f3ece51-5283-480a-85b3-6497786f2563 button.colab-df-generate');
+        document.querySelector('#id_9ee76ae0-7eed-4206-987a-a3befc7af562 button.colab-df-generate');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
@@ -1687,7 +1738,7 @@ H_{\text{norm}} =
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-bb7d4ff6-d9a0-42de-8274-f649ae280b88" class="colab-df-container">
+  <div id="df-ba4b7a73-9824-4a16-b2d8-2a3ef83e26d3" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1716,19 +1767,19 @@ H_{\text{norm}} =
       <th>0</th>
       <td>1.0</td>
       <td>3</td>
-      <td>0.500000000000000</td>
+      <td>0.500000</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2.0</td>
       <td>2</td>
-      <td>0.333333333333333</td>
+      <td>0.333333</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3.0</td>
       <td>1</td>
-      <td>0.166666666666667</td>
+      <td>0.166667</td>
     </tr>
   </tbody>
 </table>
@@ -1736,7 +1787,7 @@ H_{\text{norm}} =
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-bb7d4ff6-d9a0-42de-8274-f649ae280b88')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-ba4b7a73-9824-4a16-b2d8-2a3ef83e26d3')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -1788,12 +1839,12 @@ H_{\text{norm}} =
 
     <script>
       const buttonEl =
-        document.querySelector('#df-bb7d4ff6-d9a0-42de-8274-f649ae280b88 button.colab-df-convert');
+        document.querySelector('#df-ba4b7a73-9824-4a16-b2d8-2a3ef83e26d3 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-bb7d4ff6-d9a0-42de-8274-f649ae280b88');
+        const element = document.querySelector('#df-ba4b7a73-9824-4a16-b2d8-2a3ef83e26d3');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1813,7 +1864,7 @@ H_{\text{norm}} =
   </div>
 
 
-  <div id="id_549d1644-a499-4268-a217-53622cc19fab">
+  <div id="id_4de34e85-1174-4c85-ad50-f7901b08e344">
     <style>
       .colab-df-generate {
         background-color: #E8F0FE;
@@ -1857,7 +1908,7 @@ H_{\text{norm}} =
     <script>
       (() => {
       const buttonEl =
-        document.querySelector('#id_549d1644-a499-4268-a217-53622cc19fab button.colab-df-generate');
+        document.querySelector('#id_4de34e85-1174-4c85-ad50-f7901b08e344 button.colab-df-generate');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
@@ -1948,7 +1999,7 @@ H_{\text{norm}}
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-a81fab8b-48a5-48ed-9c3d-cd33cf264f31" class="colab-df-container">
+  <div id="df-d3cf6135-53bb-443f-942d-1d4728b5e589" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2001,7 +2052,7 @@ H_{\text{norm}}
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-a81fab8b-48a5-48ed-9c3d-cd33cf264f31')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d3cf6135-53bb-443f-942d-1d4728b5e589')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -2053,12 +2104,12 @@ H_{\text{norm}}
 
     <script>
       const buttonEl =
-        document.querySelector('#df-a81fab8b-48a5-48ed-9c3d-cd33cf264f31 button.colab-df-convert');
+        document.querySelector('#df-d3cf6135-53bb-443f-942d-1d4728b5e589 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-a81fab8b-48a5-48ed-9c3d-cd33cf264f31');
+        const element = document.querySelector('#df-d3cf6135-53bb-443f-942d-1d4728b5e589');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -2078,7 +2129,7 @@ H_{\text{norm}}
   </div>
 
 
-  <div id="id_33232311-553d-4824-ac1f-9796b813c86f">
+  <div id="id_4bb76f27-ea85-4bf3-9638-ef19d6ed2b3b">
     <style>
       .colab-df-generate {
         background-color: #E8F0FE;
@@ -2122,7 +2173,7 @@ H_{\text{norm}}
     <script>
       (() => {
       const buttonEl =
-        document.querySelector('#id_33232311-553d-4824-ac1f-9796b813c86f button.colab-df-generate');
+        document.querySelector('#id_4bb76f27-ea85-4bf3-9638-ef19d6ed2b3b button.colab-df-generate');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
@@ -2139,7 +2190,7 @@ H_{\text{norm}}
 </pre></div>
 </div>
 <div class="output text_html">
-  <div id="df-06798e30-e821-4622-8695-c08a16ab264b" class="colab-df-container">
+  <div id="df-cbd749a8-4288-47f4-9483-63f6058f9089" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2166,63 +2217,63 @@ H_{\text{norm}}
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000008486154911</td>
+      <td>0.000008</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000020169327399</td>
+      <td>0.000020</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000020721830879</td>
+      <td>0.000021</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000022071355488</td>
+      <td>0.000022</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000023438198696</td>
+      <td>0.000023</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000023913456971</td>
+      <td>0.000024</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000024331446184</td>
+      <td>0.000024</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000025576335247</td>
+      <td>0.000026</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000026170286219</td>
+      <td>0.000026</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000026198122214</td>
+      <td>0.000026</td>
       <td>1</td>
-      <td>0.002732240437158</td>
+      <td>0.002732</td>
     </tr>
   </tbody>
 </table>
@@ -2230,7 +2281,7 @@ H_{\text{norm}}
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-06798e30-e821-4622-8695-c08a16ab264b')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-cbd749a8-4288-47f4-9483-63f6058f9089')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -2282,12 +2333,12 @@ H_{\text{norm}}
 
     <script>
       const buttonEl =
-        document.querySelector('#df-06798e30-e821-4622-8695-c08a16ab264b button.colab-df-convert');
+        document.querySelector('#df-cbd749a8-4288-47f4-9483-63f6058f9089 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-06798e30-e821-4622-8695-c08a16ab264b');
+        const element = document.querySelector('#df-cbd749a8-4288-47f4-9483-63f6058f9089');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -2344,7 +2395,7 @@ H_{\text{norm}}
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-fe4f8f40-82ac-45e0-adf9-52b7ab5f3d88" class="colab-df-container">
+  <div id="df-05352042-874c-41b0-81c5-c555b7363b0f" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2397,7 +2448,7 @@ H_{\text{norm}}
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-fe4f8f40-82ac-45e0-adf9-52b7ab5f3d88')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-05352042-874c-41b0-81c5-c555b7363b0f')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -2449,12 +2500,12 @@ H_{\text{norm}}
 
     <script>
       const buttonEl =
-        document.querySelector('#df-fe4f8f40-82ac-45e0-adf9-52b7ab5f3d88 button.colab-df-convert');
+        document.querySelector('#df-05352042-874c-41b0-81c5-c555b7363b0f button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-fe4f8f40-82ac-45e0-adf9-52b7ab5f3d88');
+        const element = document.querySelector('#df-05352042-874c-41b0-81c5-c555b7363b0f');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -2474,7 +2525,7 @@ H_{\text{norm}}
   </div>
 
 
-  <div id="id_3dd81719-9e93-4bb5-9ad0-e4e1c6f5e475">
+  <div id="id_e8941536-f1d3-4146-8569-3173158cf4f5">
     <style>
       .colab-df-generate {
         background-color: #E8F0FE;
@@ -2518,7 +2569,7 @@ H_{\text{norm}}
     <script>
       (() => {
       const buttonEl =
-        document.querySelector('#id_3dd81719-9e93-4bb5-9ad0-e4e1c6f5e475 button.colab-df-generate');
+        document.querySelector('#id_e8941536-f1d3-4146-8569-3173158cf4f5 button.colab-df-generate');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
@@ -2561,7 +2612,7 @@ H_{\text{norm}}
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-d313d0ec-e3e1-4c45-b07a-625210779e49" class="colab-df-container">
+  <div id="df-2f14367e-e165-4c12-b522-f6aa8ec548c5" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2593,8 +2644,8 @@ H_{\text{norm}}
     <tr>
       <th>0</th>
       <td>NO2</td>
-      <td>23422.309705949122872</td>
-      <td>23422.309705949122872</td>
+      <td>23789.873695</td>
+      <td>23789.873695</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -2603,8 +2654,8 @@ H_{\text{norm}}
     <tr>
       <th>1</th>
       <td>SO2</td>
-      <td>1512.452031159700937</td>
-      <td>1512.452031159700937</td>
+      <td>1512.452031</td>
+      <td>1512.452031</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -2613,8 +2664,8 @@ H_{\text{norm}}
     <tr>
       <th>2</th>
       <td>CO</td>
-      <td>117.844654577265800</td>
-      <td>117.844654577265800</td>
+      <td>117.844655</td>
+      <td>117.844655</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -2626,7 +2677,7 @@ H_{\text{norm}}
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-d313d0ec-e3e1-4c45-b07a-625210779e49')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-2f14367e-e165-4c12-b522-f6aa8ec548c5')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -2678,12 +2729,12 @@ H_{\text{norm}}
 
     <script>
       const buttonEl =
-        document.querySelector('#df-d313d0ec-e3e1-4c45-b07a-625210779e49 button.colab-df-convert');
+        document.querySelector('#df-2f14367e-e165-4c12-b522-f6aa8ec548c5 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-d313d0ec-e3e1-4c45-b07a-625210779e49');
+        const element = document.querySelector('#df-2f14367e-e165-4c12-b522-f6aa8ec548c5');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -2703,7 +2754,7 @@ H_{\text{norm}}
   </div>
 
 
-  <div id="id_38d95283-7a06-40e5-8fe6-166ab38e7794">
+  <div id="id_522b4ff9-9624-4807-aeb7-51ca1c271542">
     <style>
       .colab-df-generate {
         background-color: #E8F0FE;
@@ -2747,7 +2798,7 @@ H_{\text{norm}}
     <script>
       (() => {
       const buttonEl =
-        document.querySelector('#id_38d95283-7a06-40e5-8fe6-166ab38e7794 button.colab-df-generate');
+        document.querySelector('#id_522b4ff9-9624-4807-aeb7-51ca1c271542 button.colab-df-generate');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
@@ -2764,7 +2815,7 @@ H_{\text{norm}}
 </pre></div>
 </div>
 <div class="output text_html">
-  <div id="df-677cec6a-74ca-433c-9600-8107e23cd8b9" class="colab-df-container">
+  <div id="df-4e4906f2-2b6f-464a-a514-8b91a90f7a78" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2796,8 +2847,8 @@ H_{\text{norm}}
     <tr>
       <th>0</th>
       <td>NO2</td>
-      <td>23422.309706000000006</td>
-      <td>23422.309706000000006</td>
+      <td>23789.873695</td>
+      <td>23789.873695</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -2806,8 +2857,8 @@ H_{\text{norm}}
     <tr>
       <th>1</th>
       <td>SO2</td>
-      <td>1512.452031000000034</td>
-      <td>1512.452031000000034</td>
+      <td>1512.452031</td>
+      <td>1512.452031</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -2816,8 +2867,8 @@ H_{\text{norm}}
     <tr>
       <th>2</th>
       <td>CO</td>
-      <td>117.844655000000003</td>
-      <td>117.844655000000003</td>
+      <td>117.844655</td>
+      <td>117.844655</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
@@ -2829,7 +2880,7 @@ H_{\text{norm}}
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-677cec6a-74ca-433c-9600-8107e23cd8b9')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-4e4906f2-2b6f-464a-a514-8b91a90f7a78')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -2881,12 +2932,12 @@ H_{\text{norm}}
 
     <script>
       const buttonEl =
-        document.querySelector('#df-677cec6a-74ca-433c-9600-8107e23cd8b9 button.colab-df-convert');
+        document.querySelector('#df-4e4906f2-2b6f-464a-a514-8b91a90f7a78 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-677cec6a-74ca-433c-9600-8107e23cd8b9');
+        const element = document.querySelector('#df-4e4906f2-2b6f-464a-a514-8b91a90f7a78');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -2933,10 +2984,8 @@ H_{\text{norm}}
 </section>
 </section>
 </section>
-<section id="data-preparation-deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan">
-<h2>2. Data Preparation: Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan<a class="headerlink" href="#data-preparation-deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan" title="Link to this heading">#</a></h2>
-<section id="deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-no2">
-<h3>2.1 Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan NO2<a class="headerlink" href="#deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-no2" title="Link to this heading">#</a></h3>
+<section id="data-preparation-deteksi-outlier-imputasi-missing-value-interpolasi-dan-ekstraksi-fitur-polutan">
+<h2>2. Data Preparation: Deteksi Outlier, Imputasi Missing Value, Interpolasi, dan Ekstraksi Fitur Polutan<a class="headerlink" href="#data-preparation-deteksi-outlier-imputasi-missing-value-interpolasi-dan-ekstraksi-fitur-polutan" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -2944,32 +2993,17 @@ H_{\text{norm}}
 <span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tsfel_features</span>
 
-<span class="c1"># ---------- 1. Muat dan bersihkan data ----------</span>
+<span class="c1"># ---------- 1. Muat 1 file CSV utama yang berisi semua polutan ----------</span>
+<span class="c1"># Sesuaikan nama file jika berbeda (misal: 'mystorage/Kerek-Clean.csv')</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'polutan_gresik_timeseries.csv'</span><span class="p">)</span>
+
 <span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">target_pollutant</span> <span class="o">=</span> <span class="s1">'NO2'</span>
-
-<span class="c1"># --- FIX: paksa kolom target jadi numerik, nilai yang gagal dikonversi -&gt; NaN ---</span>
-<span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
-
-<span class="n">n_missing_before</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah nilai non-numerik/kosong yang dikonversi jadi NaN: </span><span class="si">{</span><span class="n">n_missing_before</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
-<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
-<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'time'</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
-
+<span class="n">pollutants</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'NO2'</span><span class="p">,</span> <span class="s1">'SO2'</span><span class="p">,</span> <span class="s1">'CO'</span><span class="p">]</span>
 <span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
-<span class="c1"># ---------- 2. Daftar PERSIS fitur yang diminta ----------</span>
+<span class="c1"># ---------- 2. Daftar PERSIS 68 fitur yang diminta ----------</span>
 <span class="n">FEATURE_LIST</span> <span class="o">=</span> <span class="s2">"""abs_energy auc autocorr average_power calc_centroid calc_max calc_mean</span>
 <span class="s2">calc_median calc_min calc_std calc_var dfa distance ecdf ecdf_percentile ecdf_percentile_count</span>
 <span class="s2">ecdf_slope entropy fundamental_frequency higuchi_fractal_dimension hist_mode human_range_energy</span>
@@ -2982,7 +3016,8 @@ H_{\text{norm}}
 <span class="s2">spectral_spread spectral_variation spectrogram_mean_coeff sum_abs_diff wavelet_abs_mean</span>
 <span class="s2">wavelet_energy wavelet_entropy wavelet_std wavelet_var zero_cross"""</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah fitur yang diminta:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah fitur per polutan: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total target fitur keseluruhan: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">pollutants</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
@@ -3004,39 +3039,110 @@ H_{\text{norm}}
     <span class="k">return</span> <span class="n">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
 
-<span class="n">row</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">fn_name</span> <span class="ow">in</span> <span class="n">FEATURE_LIST</span><span class="p">:</span>
-    <span class="n">row</span><span class="p">[</span><span class="n">fn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal_1d</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+<span class="c1"># Dictionary untuk menampung seluruh hasil ekstraksi dari semua polutan</span>
+<span class="n">combined_row</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">combined_row_poly</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># [TAMBAHAN] penampung hasil versi polynomial</span>
 
-<span class="n">extracted_features_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">])</span>
+<span class="c1"># ---------- 3. Looping untuk membersihkan dan mengekstraksi tiap polutan ----------</span>
+<span class="k">for</span> <span class="n">pollutant</span> <span class="ow">in</span> <span class="n">pollutants</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Memproses polutan: </span><span class="si">{</span><span class="n">pollutant</span><span class="si">}</span><span class="s2"> ---"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Berhasil! Jumlah fitur yang dihasilkan untuk </span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">extracted_features_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="n">extracted_features_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s1">_Gresik_TSFEL.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># Buat copy dataframe agar tidak saling menimpa</span>
+    <span class="n">df_poly</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'date'</span><span class="p">,</span> <span class="n">pollutant</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># Paksa kolom target jadi numerik</span>
+    <span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+    <span class="n">n_missing_before</span> <span class="o">=</span> <span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah NaN/non-numerik pada </span><span class="si">{</span><span class="n">pollutant</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">n_missing_before</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="c1"># Handling outlier dengan IQR</span>
+    <span class="n">Q1</span> <span class="o">=</span> <span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">Q3</span> <span class="o">=</span> <span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+    <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+    <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+    <span class="n">df_poly</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># Interpolasi waktu dan cleaning</span>
+    <span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_poly</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'time'</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+    <span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="c1"># [TAMBAHAN] Interpolasi polynomial dan cleaning</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">df_poly</span><span class="p">[[</span><span class="s2">"date"</span><span class="p">,</span> <span class="n">pollutant</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">tmp</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">"polynomial"</span><span class="p">,</span>
+        <span class="n">order</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+    <span class="n">tmp</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+
+    <span class="n">hasil_poly</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"date"</span><span class="p">)</span>
+    <span class="n">signal_1d_poly</span> <span class="o">=</span> <span class="n">hasil_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="c1"># Ekstraksi fitur dan beri prefix nama polutan (misal: NO2_abs_energy)</span>
+    <span class="k">for</span> <span class="n">fn_name</span> <span class="ow">in</span> <span class="n">FEATURE_LIST</span><span class="p">:</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">pollutant</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">fn_name</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">combined_row</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal_1d</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+        <span class="n">combined_row_poly</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal_1d_poly</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>  <span class="c1"># [TAMBAHAN]</span>
+
+<span class="c1"># ---------- 4. Simpan ke DataFrame final (1 baris, 204 kolom) ----------</span>
+<span class="n">extracted_features_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">combined_row</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Berhasil! Total kolom akhir yang dihasilkan: </span><span class="si">{</span><span class="n">extracted_features_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">output_filename</span> <span class="o">=</span> <span class="s1">'All-Pollutants-Gresik-TSFEL-Linier.csv'</span>
+<span class="n">extracted_features_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File berhasil disimpan sebagai: </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># [TAMBAHAN] Simpan versi polynomial</span>
+<span class="n">extracted_features_poly</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">combined_row_poly</span><span class="p">])</span>
+<span class="n">output_filename_poly</span> <span class="o">=</span> <span class="s1">'All-Pollutants-Gresik-TSFEL-Polynomial.csv'</span>
+<span class="n">extracted_features_poly</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_filename_poly</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File polynomial berhasil disimpan sebagai: </span><span class="si">{</span><span class="n">output_filename_poly</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah nilai non-numerik/kosong yang dikonversi jadi NaN: 178
-Jumlah fitur yang diminta: 68
-Berhasil! Jumlah fitur yang dihasilkan untuk NO2: 68
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur per polutan: 68
+Total target fitur keseluruhan: 204
+
+--- Memproses polutan: NO2 ---
+Jumlah NaN/non-numerik pada NO2: 178
+
+--- Memproses polutan: SO2 ---
+Jumlah NaN/non-numerik pada SO2: 147
+
+--- Memproses polutan: CO ---
+Jumlah NaN/non-numerik pada CO: 158
+
+Berhasil! Total kolom akhir yang dihasilkan: 204
+File berhasil disimpan sebagai: All-Pollutants-Gresik-TSFEL-Linier.csv
+File polynomial berhasil disimpan sebagai: All-Pollutants-Gresik-TSFEL-Polynomial.csv
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Penjelasan kode:</strong> Kode digunakan untuk membaca data NO2, mengubah format tanggal, serta memastikan nilai polutan dalam bentuk numerik. Data kemudian diperiksa untuk menemukan outlier menggunakan metode IQR dan nilai kosong diisi dengan interpolasi berdasarkan waktu. Setelah data bersih, TSFEL digunakan untuk menghitung 68 fitur yang telah ditentukan. Hasilnya disimpan dalam DataFrame dan diekspor ke file CSV.</p>
+<p><strong>Penjelasan kode:</strong> Data <code class="docutils literal notranslate"><span class="pre">polutan_gresik_timeseries.csv</span></code> dibaca dan kolom <code class="docutils literal notranslate"><span class="pre">date</span></code> dikonversi ke format datetime, kemudian data diurutkan berdasarkan tanggal. Setiap polutan (<code class="docutils literal notranslate"><span class="pre">NO2</span></code>, <code class="docutils literal notranslate"><span class="pre">SO2</span></code>, dan <code class="docutils literal notranslate"><span class="pre">CO</span></code>) diproses secara terpisah dengan mengubah nilai non-numerik menjadi <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, mendeteksi outlier menggunakan metode IQR, lalu mengganti outlier menjadi <code class="docutils literal notranslate"><span class="pre">NaN</span></code>. Nilai yang hilang kemudian ditangani menggunakan interpolasi waktu untuk menghasilkan data versi linear dan interpolasi polynomial orde 2 untuk menghasilkan data versi polynomial. Kedua hasil tersebut selanjutnya digunakan sebagai input untuk ekstraksi 68 fitur TSFEL pada masing-masing polutan, sehingga diperoleh 204 fitur untuk setiap metode interpolasi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-<span class="n">df_tsfel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'NO2_Gresik_TSFEL.csv'</span><span class="p">)</span>
+<span class="n">df_linear</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'All-Pollutants-Gresik-TSFEL-Linier.csv'</span><span class="p">)</span>
+<span class="n">df_polynomial</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'All-Pollutants-Gresik-TSFEL-Polynomial.csv'</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">df_tsfel</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== TSFEL LINIER ==="</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_linear</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=== TSFEL POLYNOMIAL ==="</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_polynomial</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== TSFEL LINIER ===
+</pre></div>
+</div>
 <div class="output text_html">
-  <div id="df-ee347ced-295a-4034-a78f-cb8c086c1013" class="colab-df-container">
+  <div id="df-0a01d8c1-0bf2-4f00-a3d2-2f8054a8c5db" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3055,27 +3161,27 @@ Berhasil! Jumlah fitur yang dihasilkan untuk NO2: 68
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>abs_energy</th>
-      <th>auc</th>
-      <th>autocorr</th>
-      <th>average_power</th>
-      <th>calc_centroid</th>
-      <th>calc_max</th>
-      <th>calc_mean</th>
-      <th>calc_median</th>
-      <th>calc_min</th>
-      <th>calc_std</th>
+      <th>NO2_abs_energy</th>
+      <th>NO2_auc</th>
+      <th>NO2_autocorr</th>
+      <th>NO2_average_power</th>
+      <th>NO2_calc_centroid</th>
+      <th>NO2_calc_max</th>
+      <th>NO2_calc_mean</th>
+      <th>NO2_calc_median</th>
+      <th>NO2_calc_min</th>
+      <th>NO2_calc_std</th>
       <th>...</th>
-      <th>spectral_spread</th>
-      <th>spectral_variation</th>
-      <th>spectrogram_mean_coeff</th>
-      <th>sum_abs_diff</th>
-      <th>wavelet_abs_mean</th>
-      <th>wavelet_energy</th>
-      <th>wavelet_entropy</th>
-      <th>wavelet_std</th>
-      <th>wavelet_var</th>
-      <th>zero_cross</th>
+      <th>CO_spectral_spread</th>
+      <th>CO_spectral_variation</th>
+      <th>CO_spectrogram_mean_coeff</th>
+      <th>CO_sum_abs_diff</th>
+      <th>CO_wavelet_abs_mean</th>
+      <th>CO_wavelet_energy</th>
+      <th>CO_wavelet_entropy</th>
+      <th>CO_wavelet_std</th>
+      <th>CO_wavelet_var</th>
+      <th>CO_zero_cross</th>
     </tr>
   </thead>
   <tbody>
@@ -3092,319 +3198,6 @@ Berhasil! Jumlah fitur yang dihasilkan untuk NO2: 68
       <td>0.000008</td>
       <td>0.00002</td>
       <td>...</td>
-      <td>0.154967</td>
-      <td>0.685525</td>
-      <td>7.180608e-10</td>
-      <td>0.00438</td>
-      <td>0.000003</td>
-      <td>0.000031</td>
-      <td>2.145496</td>
-      <td>0.000031</td>
-      <td>1.040073e-09</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>1 rows × 68 columns</p>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-ee347ced-295a-4034-a78f-cb8c086c1013')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-ee347ced-295a-4034-a78f-cb8c086c1013 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-ee347ced-295a-4034-a78f-cb8c086c1013');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-  </div>
-
-
-  <div id="id_ac11ef48-80e9-435f-bf3a-6c124c8991da">
-    <style>
-      .colab-df-generate {
-        background-color: #E8F0FE;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        fill: #1967D2;
-        height: 32px;
-        padding: 0 0 0 0;
-        width: 32px;
-      }
-
-      .colab-df-generate:hover {
-        background-color: #E2EBFA;
-        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-        fill: #174EA6;
-      }
-
-      [theme=dark] .colab-df-generate {
-        background-color: #3B4455;
-        fill: #D2E3FC;
-      }
-
-      [theme=dark] .colab-df-generate:hover {
-        background-color: #434B5C;
-        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-        fill: #FFFFFF;
-      }
-    </style>
-    <button class="colab-df-generate" onclick="generateWithVariable('df_tsfel')"
-            title="Generate code using this dataframe."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
-  </svg>
-    </button>
-    <script>
-      (() => {
-      const buttonEl =
-        document.querySelector('#id_ac11ef48-80e9-435f-bf3a-6c124c8991da button.colab-df-generate');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      buttonEl.onclick = () => {
-        google.colab.notebook.generateWithVariable('df_tsfel');
-      }
-      })();
-    </script>
-  </div>
-
-    </div>
-  </div>
-</div></div>
-</div>
-<p><strong>Penjelasan kode:</strong> <code class="docutils literal notranslate"><span class="pre">pandas</span></code> digunakan untuk membaca dan mengolah data dalam bentuk tabel. Fungsi <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> digunakan untuk membaca file <code class="docutils literal notranslate"><span class="pre">NO2_Gresik_TSFEL.csv</span></code> dan menyimpannya ke dalam variabel <code class="docutils literal notranslate"><span class="pre">df_tsfel</span></code>. Selanjutnya, <code class="docutils literal notranslate"><span class="pre">display()</span></code> digunakan untuk menampilkan data tersebut dalam bentuk tabel.</p>
-</section>
-<section id="deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-co">
-<h3>2.2 Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan CO<a class="headerlink" href="#deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-co" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tsfel_features</span>
-
-<span class="c1"># ---------- 1. Muat dan bersihkan data ----------</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'polutan_gresik_timeseries.csv'</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">target_pollutant</span> <span class="o">=</span> <span class="s1">'CO'</span>
-
-<span class="c1"># --- FIX: paksa kolom target jadi numerik, nilai yang gagal dikonversi -&gt; NaN ---</span>
-<span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
-
-<span class="n">n_missing_before</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah nilai non-numerik/kosong yang dikonversi jadi NaN: </span><span class="si">{</span><span class="n">n_missing_before</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
-<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
-<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'time'</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
-
-<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># ---------- 2. Daftar PERSIS fitur yang diminta ----------</span>
-<span class="n">FEATURE_LIST</span> <span class="o">=</span> <span class="s2">"""abs_energy auc autocorr average_power calc_centroid calc_max calc_mean</span>
-<span class="s2">calc_median calc_min calc_std calc_var dfa distance ecdf ecdf_percentile ecdf_percentile_count</span>
-<span class="s2">ecdf_slope entropy fundamental_frequency higuchi_fractal_dimension hist_mode human_range_energy</span>
-<span class="s2">hurst_exponent interq_range kurtosis lempel_ziv lpcc max_frequency max_power_spectrum</span>
-<span class="s2">maximum_fractal_length mean_abs_deviation mean_abs_diff mean_diff median_abs_deviation</span>
-<span class="s2">median_abs_diff median_diff median_frequency mfcc mse negative_turning neighbourhood_peaks</span>
-<span class="s2">petrosian_fractal_dimension pk_pk_distance positive_turning power_bandwidth rms skewness slope</span>
-<span class="s2">spectral_centroid spectral_decrease spectral_distance spectral_entropy spectral_kurtosis</span>
-<span class="s2">spectral_positive_turning spectral_roll_off spectral_roll_on spectral_skewness spectral_slope</span>
-<span class="s2">spectral_spread spectral_variation spectrogram_mean_coeff sum_abs_diff wavelet_abs_mean</span>
-<span class="s2">wavelet_energy wavelet_entropy wavelet_std wavelet_var zero_cross"""</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah fitur yang diminta:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">))</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">"values"</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"values"</span><span class="p">]</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
-        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
-    <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tsfel_features</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
-    <span class="k">if</span> <span class="s2">"fs"</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-
-<span class="n">row</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">fn_name</span> <span class="ow">in</span> <span class="n">FEATURE_LIST</span><span class="p">:</span>
-    <span class="n">row</span><span class="p">[</span><span class="n">fn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal_1d</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
-
-<span class="n">extracted_features_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">])</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Berhasil! Jumlah fitur yang dihasilkan untuk </span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">extracted_features_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="n">extracted_features_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s1">_Gresik_TSFEL.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah nilai non-numerik/kosong yang dikonversi jadi NaN: 158
-Jumlah fitur yang diminta: 68
-Berhasil! Jumlah fitur yang dihasilkan untuk CO: 68
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Penjelasan kode:</strong> Kode digunakan untuk membaca data CO, mengubah format tanggal, serta memastikan nilai polutan dalam bentuk numerik. Data kemudian diperiksa untuk menemukan outlier menggunakan metode IQR dan nilai kosong diisi dengan interpolasi berdasarkan waktu. Setelah data bersih, TSFEL digunakan untuk menghitung 68 fitur yang telah ditentukan. Hasilnya disimpan dalam DataFrame dan diekspor ke file CSV.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="n">df_tsfel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'CO_Gresik_TSFEL.csv'</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">df_tsfel</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-b4aafe0e-29b3-4b33-a314-da0bf5b1baf3" class="colab-df-container">
-    <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>abs_energy</th>
-      <th>auc</th>
-      <th>autocorr</th>
-      <th>average_power</th>
-      <th>calc_centroid</th>
-      <th>calc_max</th>
-      <th>calc_mean</th>
-      <th>calc_median</th>
-      <th>calc_min</th>
-      <th>calc_std</th>
-      <th>...</th>
-      <th>spectral_spread</th>
-      <th>spectral_variation</th>
-      <th>spectrogram_mean_coeff</th>
-      <th>sum_abs_diff</th>
-      <th>wavelet_abs_mean</th>
-      <th>wavelet_energy</th>
-      <th>wavelet_entropy</th>
-      <th>wavelet_std</th>
-      <th>wavelet_var</th>
-      <th>zero_cross</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.307969</td>
-      <td>10.527944</td>
-      <td>2.0</td>
-      <td>0.000844</td>
-      <td>182.065409</td>
-      <td>0.03859</td>
-      <td>0.028848</td>
-      <td>0.028483</td>
-      <td>0.019385</td>
-      <td>0.00304</td>
-      <td>...</td>
       <td>0.13338</td>
       <td>0.660595</td>
       <td>0.000015</td>
@@ -3418,12 +3211,12 @@ Berhasil! Jumlah fitur yang dihasilkan untuk CO: 68
     </tr>
   </tbody>
 </table>
-<p>1 rows × 68 columns</p>
+<p>1 rows × 204 columns</p>
 </div>
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-b4aafe0e-29b3-4b33-a314-da0bf5b1baf3')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-0a01d8c1-0bf2-4f00-a3d2-2f8054a8c5db')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -3475,12 +3268,12 @@ Berhasil! Jumlah fitur yang dihasilkan untuk CO: 68
 
     <script>
       const buttonEl =
-        document.querySelector('#df-b4aafe0e-29b3-4b33-a314-da0bf5b1baf3 button.colab-df-convert');
+        document.querySelector('#df-0a01d8c1-0bf2-4f00-a3d2-2f8054a8c5db button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-b4aafe0e-29b3-4b33-a314-da0bf5b1baf3');
+        const element = document.querySelector('#df-0a01d8c1-0bf2-4f00-a3d2-2f8054a8c5db');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -3500,7 +3293,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk CO: 68
   </div>
 
 
-  <div id="id_7cb234da-b615-489f-a12a-4f00a0de9940">
+  <div id="id_2bfb61e6-1148-4241-ac03-6ff163772da0">
     <style>
       .colab-df-generate {
         background-color: #E8F0FE;
@@ -3532,7 +3325,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk CO: 68
         fill: #FFFFFF;
       }
     </style>
-    <button class="colab-df-generate" onclick="generateWithVariable('df_tsfel')"
+    <button class="colab-df-generate" onclick="generateWithVariable('df_linear')"
             title="Generate code using this dataframe."
             style="display:none;">
 
@@ -3544,12 +3337,12 @@ Berhasil! Jumlah fitur yang dihasilkan untuk CO: 68
     <script>
       (() => {
       const buttonEl =
-        document.querySelector('#id_7cb234da-b615-489f-a12a-4f00a0de9940 button.colab-df-generate');
+        document.querySelector('#id_2bfb61e6-1148-4241-ac03-6ff163772da0 button.colab-df-generate');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       buttonEl.onclick = () => {
-        google.colab.notebook.generateWithVariable('df_tsfel');
+        google.colab.notebook.generateWithVariable('df_linear');
       }
       })();
     </script>
@@ -3557,112 +3350,11 @@ Berhasil! Jumlah fitur yang dihasilkan untuk CO: 68
 
     </div>
   </div>
-</div></div>
-</div>
-<p><strong>Penjelasan kode:</strong> <code class="docutils literal notranslate"><span class="pre">pandas</span></code> digunakan untuk membaca dan mengolah data dalam bentuk tabel. Fungsi <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> digunakan untuk membaca file <code class="docutils literal notranslate"><span class="pre">CO_Gresik_TSFEL.csv</span></code> dan menyimpannya ke dalam variabel <code class="docutils literal notranslate"><span class="pre">df_tsfel</span></code>. Selanjutnya, <code class="docutils literal notranslate"><span class="pre">display()</span></code> digunakan untuk menampilkan data tersebut dalam bentuk tabel.</p>
-</section>
-<section id="deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-so2">
-<h3>2.3 Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan SO2<a class="headerlink" href="#deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-so2" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tsfel_features</span>
-
-<span class="c1"># ---------- 1. Muat dan bersihkan data ----------</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'polutan_gresik_timeseries.csv'</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">target_pollutant</span> <span class="o">=</span> <span class="s1">'SO2'</span>
-
-<span class="c1"># --- FIX: paksa kolom target jadi numerik, nilai yang gagal dikonversi -&gt; NaN ---</span>
-<span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
-
-<span class="n">n_missing_before</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Jumlah nilai non-numerik/kosong yang dikonversi jadi NaN: </span><span class="si">{</span><span class="n">n_missing_before</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
-<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
-<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'date'</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'time'</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
-
-<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># ---------- 2. Daftar PERSIS fitur yang diminta ----------</span>
-<span class="n">FEATURE_LIST</span> <span class="o">=</span> <span class="s2">"""abs_energy auc autocorr average_power calc_centroid calc_max calc_mean</span>
-<span class="s2">calc_median calc_min calc_std calc_var dfa distance ecdf ecdf_percentile ecdf_percentile_count</span>
-<span class="s2">ecdf_slope entropy fundamental_frequency higuchi_fractal_dimension hist_mode human_range_energy</span>
-<span class="s2">hurst_exponent interq_range kurtosis lempel_ziv lpcc max_frequency max_power_spectrum</span>
-<span class="s2">maximum_fractal_length mean_abs_deviation mean_abs_diff mean_diff median_abs_deviation</span>
-<span class="s2">median_abs_diff median_diff median_frequency mfcc mse negative_turning neighbourhood_peaks</span>
-<span class="s2">petrosian_fractal_dimension pk_pk_distance positive_turning power_bandwidth rms skewness slope</span>
-<span class="s2">spectral_centroid spectral_decrease spectral_distance spectral_entropy spectral_kurtosis</span>
-<span class="s2">spectral_positive_turning spectral_roll_off spectral_roll_on spectral_skewness spectral_slope</span>
-<span class="s2">spectral_spread spectral_variation spectrogram_mean_coeff sum_abs_diff wavelet_abs_mean</span>
-<span class="s2">wavelet_energy wavelet_entropy wavelet_std wavelet_var zero_cross"""</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah fitur yang diminta:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">))</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">"values"</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"values"</span><span class="p">]</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
-        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
-    <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tsfel_features</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
-    <span class="k">if</span> <span class="s2">"fs"</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-
-<span class="n">row</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">fn_name</span> <span class="ow">in</span> <span class="n">FEATURE_LIST</span><span class="p">:</span>
-    <span class="n">row</span><span class="p">[</span><span class="n">fn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal_1d</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
-
-<span class="n">extracted_features_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">])</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Berhasil! Jumlah fitur yang dihasilkan untuk </span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">extracted_features_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="n">extracted_features_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s1">_Gresik_TSFEL.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== TSFEL POLYNOMIAL ===
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah nilai non-numerik/kosong yang dikonversi jadi NaN: 147
-Jumlah fitur yang diminta: 68
-Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Penjelasan kode:</strong> Kode digunakan untuk membaca data SO2, mengubah format tanggal, serta memastikan nilai polutan dalam bentuk numerik. Data kemudian diperiksa untuk menemukan outlier menggunakan metode IQR dan nilai kosong diisi dengan interpolasi berdasarkan waktu. Setelah data bersih, TSFEL digunakan untuk menghitung 68 fitur yang telah ditentukan. Hasilnya disimpan dalam DataFrame dan diekspor ke file CSV.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="n">df_tsfel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'SO2_Gresik_TSFEL.csv'</span><span class="p">)</span>
-
-<span class="n">display</span><span class="p">(</span><span class="n">df_tsfel</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-487131f5-fb99-403b-ae7c-2027e0c353eb" class="colab-df-container">
+  <div id="df-d41251a4-7ba3-4960-8aae-7021eeccc651" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3681,62 +3373,62 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>abs_energy</th>
-      <th>auc</th>
-      <th>autocorr</th>
-      <th>average_power</th>
-      <th>calc_centroid</th>
-      <th>calc_max</th>
-      <th>calc_mean</th>
-      <th>calc_median</th>
-      <th>calc_min</th>
-      <th>calc_std</th>
+      <th>NO2_abs_energy</th>
+      <th>NO2_auc</th>
+      <th>NO2_autocorr</th>
+      <th>NO2_average_power</th>
+      <th>NO2_calc_centroid</th>
+      <th>NO2_calc_max</th>
+      <th>NO2_calc_mean</th>
+      <th>NO2_calc_median</th>
+      <th>NO2_calc_min</th>
+      <th>NO2_calc_std</th>
       <th>...</th>
-      <th>spectral_spread</th>
-      <th>spectral_variation</th>
-      <th>spectrogram_mean_coeff</th>
-      <th>sum_abs_diff</th>
-      <th>wavelet_abs_mean</th>
-      <th>wavelet_energy</th>
-      <th>wavelet_entropy</th>
-      <th>wavelet_std</th>
-      <th>wavelet_var</th>
-      <th>zero_cross</th>
+      <th>CO_spectral_spread</th>
+      <th>CO_spectral_variation</th>
+      <th>CO_spectrogram_mean_coeff</th>
+      <th>CO_sum_abs_diff</th>
+      <th>CO_wavelet_abs_mean</th>
+      <th>CO_wavelet_energy</th>
+      <th>CO_wavelet_entropy</th>
+      <th>CO_wavelet_std</th>
+      <th>CO_wavelet_var</th>
+      <th>CO_zero_cross</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.00003</td>
-      <td>0.072986</td>
-      <td>2.0</td>
-      <td>8.341181e-08</td>
-      <td>198.745858</td>
-      <td>0.000835</td>
-      <td>0.000142</td>
-      <td>0.000131</td>
-      <td>-0.000617</td>
-      <td>0.000251</td>
+      <td>0.000002</td>
+      <td>0.023521</td>
+      <td>3.0</td>
+      <td>4.891864e-09</td>
+      <td>173.330768</td>
+      <td>0.000163</td>
+      <td>0.000064</td>
+      <td>0.000063</td>
+      <td>0.000006</td>
+      <td>0.000027</td>
       <td>...</td>
-      <td>0.154393</td>
-      <td>0.332211</td>
-      <td>1.054722e-07</td>
-      <td>0.069161</td>
-      <td>0.000009</td>
-      <td>0.000352</td>
-      <td>2.165275</td>
-      <td>0.000352</td>
-      <td>1.302620e-07</td>
-      <td>99.0</td>
+      <td>0.126908</td>
+      <td>0.695984</td>
+      <td>0.000024</td>
+      <td>0.75677</td>
+      <td>0.001705</td>
+      <td>0.00842</td>
+      <td>2.145592</td>
+      <td>0.008218</td>
+      <td>0.000075</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>1 rows × 68 columns</p>
+<p>1 rows × 204 columns</p>
 </div>
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-487131f5-fb99-403b-ae7c-2027e0c353eb')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d41251a4-7ba3-4960-8aae-7021eeccc651')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -3788,12 +3480,12 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
 
     <script>
       const buttonEl =
-        document.querySelector('#df-487131f5-fb99-403b-ae7c-2027e0c353eb button.colab-df-convert');
+        document.querySelector('#df-d41251a4-7ba3-4960-8aae-7021eeccc651 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-487131f5-fb99-403b-ae7c-2027e0c353eb');
+        const element = document.querySelector('#df-d41251a4-7ba3-4960-8aae-7021eeccc651');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -3813,7 +3505,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
   </div>
 
 
-  <div id="id_86d90fd4-6654-4f3f-b023-831e371103dd">
+  <div id="id_526783f4-1e7e-472f-bbc1-a6b1415b54fb">
     <style>
       .colab-df-generate {
         background-color: #E8F0FE;
@@ -3845,7 +3537,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
         fill: #FFFFFF;
       }
     </style>
-    <button class="colab-df-generate" onclick="generateWithVariable('df_tsfel')"
+    <button class="colab-df-generate" onclick="generateWithVariable('df_polynomial')"
             title="Generate code using this dataframe."
             style="display:none;">
 
@@ -3857,12 +3549,12 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
     <script>
       (() => {
       const buttonEl =
-        document.querySelector('#id_86d90fd4-6654-4f3f-b023-831e371103dd button.colab-df-generate');
+        document.querySelector('#id_526783f4-1e7e-472f-bbc1-a6b1415b54fb button.colab-df-generate');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       buttonEl.onclick = () => {
-        google.colab.notebook.generateWithVariable('df_tsfel');
+        google.colab.notebook.generateWithVariable('df_polynomial');
       }
       })();
     </script>
@@ -3872,8 +3564,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
   </div>
 </div></div>
 </div>
-<p><strong>Penjelasan kode:</strong> <code class="docutils literal notranslate"><span class="pre">pandas</span></code> digunakan untuk membaca dan mengolah data dalam bentuk tabel. Fungsi <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> digunakan untuk membaca file <code class="docutils literal notranslate"><span class="pre">SO2_Gresik_TSFEL.csv</span></code> dan menyimpannya ke dalam variabel <code class="docutils literal notranslate"><span class="pre">df_tsfel</span></code>. Selanjutnya, <code class="docutils literal notranslate"><span class="pre">display()</span></code> digunakan untuk menampilkan data tersebut dalam bentuk tabel.</p>
-</section>
+<p><strong>Penjelasan kode:</strong> <code class="docutils literal notranslate"><span class="pre">pandas</span></code> digunakan untuk membaca dan mengolah data dalam bentuk tabel. Fungsi <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> digunakan untuk membaca dua file hasil ekstraksi fitur TSFEL, yaitu <code class="docutils literal notranslate"><span class="pre">All-Pollutants-Gresik-TSFEL-Linier.csv</span></code> dan <code class="docutils literal notranslate"><span class="pre">All-Pollutants-Gresik-TSFEL-Polynomial.csv</span></code>, kemudian masing-masing disimpan ke dalam variabel <code class="docutils literal notranslate"><span class="pre">df_linear</span></code> dan <code class="docutils literal notranslate"><span class="pre">df_polynomial</span></code>. Selanjutnya, <code class="docutils literal notranslate"><span class="pre">display()</span></code> digunakan untuk menampilkan kedua dataset dalam bentuk tabel agar hasil ekstraksi fitur dengan interpolasi linear dan polynomial dapat dilihat secara terpisah.</p>
 </section>
 </section>
 
@@ -3921,7 +3612,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">KMeans Clustering Polutan di Gresik</p>
+        <p class="prev-next-title">K-Means Clustering Polutan Gresik</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3981,12 +3672,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation-deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan">2. Data Preparation: Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-no2">2.1 Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan NO2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-co">2.2 Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan CO</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-imputasi-missing-value-dan-ekstraksi-fitur-polutan-so2">2.3 Deteksi Outlier, Imputasi Missing Value dan Ekstraksi Fitur Polutan SO2</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation-deteksi-outlier-imputasi-missing-value-interpolasi-dan-ekstraksi-fitur-polutan">2. Data Preparation: Deteksi Outlier, Imputasi Missing Value, Interpolasi, dan Ekstraksi Fitur Polutan</a></li>
 </ul>
   </nav></div>
 
