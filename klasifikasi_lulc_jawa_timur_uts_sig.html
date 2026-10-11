@@ -228,15 +228,6 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="Klasifikasi_Sawah_Sentinel2A.html">Klasifikasi Sawah dan Non-Sawah Menggunakan Citra Sentinel-2A dengan Random Forest</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Klasifikasi Penggunaan dan Tutupan Lahan (<em>Land Use / Land Cover</em>) Jawa Timur</a></li>
-
-
-
-
-
-
-
-
-
 </ul>
 
     </div>
@@ -429,81 +420,77 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Klasifikasi Penggunaan dan Tutupan Lahan (<em>Land Use / Land Cover</em>) Jawa Timur</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citra-sentinel-2-pembelajaran-mesin-berbasis-poligon-peta-folium-google-satellite-sistem-informasi-streamlit">Citra Sentinel-2 + Pembelajaran Mesin Berbasis Poligon + Peta Folium (Google Satellite) + Sistem Informasi Streamlit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">1. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis-land-use-and-land-cover-classification">1.2 Tujuan Analisis <em>Land Use and Land Cover Classification</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-studi">1.3 Wilayah Studi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-di-indonesia">1.4 Acuan Klasifikasi Lahan di Indonesia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelas-dan-jumlah-data">1.5 Kelas dan Jumlah Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#band-pada-sentinel-2a">1.6 Band pada Sentinel-2A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">1.7 Alur Kerja</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">1. Data Understanding</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis-land-use-and-land-cover-classification">1.2 Tujuan Analisis <em>Land Use and Land Cover Classification</em></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-studi">1.3 Wilayah Studi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-di-indonesia">1.4 Acuan Klasifikasi Lahan di Indonesia</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelas-dan-jumlah-data">1.5 Kelas dan Jumlah Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-pada-sentinel-2a">1.6 Band pada Sentinel-2A</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">1.7 Alur Kerja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection">2. Data Collection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-dan-konfigurasi">2.1 Persiapan Lingkungan dan Konfigurasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-google-drive">Menghubungkan Google Drive</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection">2. Data Collection</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-dan-konfigurasi">2.1 Persiapan Lingkungan dan Konfigurasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-google-drive">2.0 Menghubungkan Google Drive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-shapefile-dan-pemeriksaan-kualitas-data">2.2 Membaca Shapefile dan Pemeriksaan Kualitas Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-citra-sentinel-2-dan-ekstraksi-fitur-per-poligon">2.3 Pengambilan Citra Sentinel-2 dan Ekstraksi Fitur per Poligon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-shapefile-dan-pemeriksaan-kualitas-data">2.2 Membaca Shapefile dan Pemeriksaan Kualitas Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-citra-sentinel-2-dan-ekstraksi-fitur-per-poligon">2.3 Pengambilan Citra Sentinel-2 dan Ekstraksi Fitur per Poligon</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur-dan-rumusnya">3. Deskripsi Fitur dan Rumusnya</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-band-asli-10-fitur">3.1 Fitur Band Asli (10 fitur)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-indeks-spektral-8-fitur">3.2 Fitur Indeks Spektral (8 fitur)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-statistik-zonal-unit-poligon">3.3 Agregasi Statistik Zonal (Unit Poligon)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur-dan-rumusnya">3. Deskripsi Fitur dan Rumusnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-band-asli-10-fitur">3.1 Fitur Band Asli (10 fitur)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-indeks-spektral-8-fitur">3.2 Fitur Indeks Spektral (8 fitur)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-statistik-zonal-unit-poligon">3.3 Agregasi Statistik Zonal (Unit Poligon)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda">4. Eksplorasi Data (EDA)</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-per-kelas">4.1 Jumlah Data per Kelas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-fitur">4.2 Statistik Deskriptif Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tanda-tangan-spektral-spectral-signature">4.3 Tanda Tangan Spektral (<em>Spectral Signature</em>)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-indeks-spektral-per-kelas">4.4 Sebaran Indeks Spektral per Kelas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-fitur">4.5 Korelasi Antar Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda">4. Eksplorasi Data (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-per-kelas">4.1 Jumlah Data per Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-fitur">4.2 Statistik Deskriptif Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tanda-tangan-spektral-spectral-signature">4.3 Tanda Tangan Spektral (<em>Spectral Signature</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-indeks-spektral-per-kelas">4.4 Sebaran Indeks Spektral per Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-fitur">4.5 Korelasi Antar Fitur</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-training-dan-testing">5. Pembagian Data Training dan Testing</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prinsip">5.1 Prinsip</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-training-dan-testing">5.2 Jumlah Data Training dan Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-training-dan-testing">5. Pembagian Data Training dan Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prinsip">5.1 Prinsip</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-training-dan-testing">5.2 Jumlah Data Training dan Testing</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-perbandingan-model-dan-eksperimen">6. Pemodelan, Perbandingan Model, dan Eksperimen</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-kandidat">6.1 Model Kandidat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model-dengan-validasi-silang-berulang-data-training">6.2 Perbandingan Model dengan Validasi Silang Berulang (Data Training)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-kombinasi-fitur">6.3 Eksperimen Kombinasi Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyetelan-hyperparameter-grid-search">6.4 Penyetelan <em>Hyperparameter</em> (Grid Search)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil-penyetelan">6.5 Ringkasan Hasil Penyetelan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-model-akhir">6.6 Pemilihan Model Akhir</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-akhir-pada-data-testing">6.7 Evaluasi Model Akhir pada Data Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-perbandingan-model-dan-eksperimen">6. Pemodelan, Perbandingan Model, dan Eksperimen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-kandidat">6.1 Model Kandidat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model-dengan-validasi-silang-berulang-data-training">6.2 Perbandingan Model dengan Validasi Silang Berulang (Data Training)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-kombinasi-fitur">6.3 Eksperimen Kombinasi Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyetelan-hyperparameter-grid-search">6.4 Penyetelan <em>Hyperparameter</em> (Grid Search)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil-penyetelan">6.5 Ringkasan Hasil Penyetelan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-model-akhir">6.6 Pemilihan Model Akhir</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-akhir-pada-data-testing">6.7 Evaluasi Model Akhir pada Data Testing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-seluruh-model-pada-data-testing">Perbandingan Seluruh Model pada Data Testing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kepentingan-fitur-permutation-importance">Kepentingan Fitur (<em>Permutation Importance</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-jumlah-data-dan-rasio-pembagian">6.8 Eksperimen Jumlah Data dan Rasio Pembagian</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-jumlah-data-dan-rasio-pembagian">6.8 Eksperimen Jumlah Data dan Rasio Pembagian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi-folium-google-satellite">7. Peta Hasil Klasifikasi (Folium + Google Satellite)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-seluruh-jawa-timur-per-sel-google-earth-engine">7.1 Klasifikasi Seluruh Jawa Timur per Sel (Google Earth Engine)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#luas-tiap-kelas">7.2 Luas Tiap Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vektorisasi-hasil-klasifikasi-menjadi-poligon">7.3 Vektorisasi Hasil Klasifikasi menjadi Poligon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-folium-dengan-latar-google-satellite">7.4 Peta Interaktif Folium dengan Latar Google Satellite</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi-folium-google-satellite">7. Peta Hasil Klasifikasi (Folium + Google Satellite)</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-seluruh-jawa-timur-per-sel-google-earth-engine">7.1 Klasifikasi Seluruh Jawa Timur per Sel (Google Earth Engine)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#luas-tiap-kelas">7.2 Luas Tiap Kelas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vektorisasi-hasil-klasifikasi-menjadi-poligon">7.3 Vektorisasi Hasil Klasifikasi menjadi Poligon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-folium-dengan-latar-google-satellite">7.4 Peta Interaktif Folium dengan Latar Google Satellite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keluaran-untuk-sistem-informasi-streamlit-dan-web-statis">8. Keluaran untuk Sistem Informasi (Streamlit) dan Web Statis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-ringkasan-dan-dataset">8.1 Menyimpan Ringkasan dan Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ekspor-notebook-sebagai-web-statis">8.2 Ekspor Notebook sebagai Web Statis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-dan-men-deploy-sistem-informasi-streamlit">8.3 Menjalankan dan Men-<em>deploy</em> Sistem Informasi Streamlit</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#keluaran-untuk-sistem-informasi-streamlit-dan-web-statis">8. Keluaran untuk Sistem Informasi (Streamlit) dan Web Statis</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-ringkasan-dan-dataset">8.1 Menyimpan Ringkasan dan Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekspor-notebook-sebagai-web-statis">8.2 Ekspor Notebook sebagai Web Statis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-dan-men-deploy-sistem-informasi-streamlit">8.2 Menjalankan dan Men-<em>deploy</em> Sistem Informasi Streamlit</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-implikasi-kebijakan-dan-keterbatasan">9. Kesimpulan, Implikasi Kebijakan, dan Keterbatasan</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implikasi-kebijakan">9.1 Implikasi Kebijakan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan">9.2 Keterbatasan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-implikasi-kebijakan-dan-keterbatasan">9. Kesimpulan, Implikasi Kebijakan, dan Keterbatasan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implikasi-kebijakan">9.1 Implikasi Kebijakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan">9.2 Keterbatasan</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -536,16 +523,15 @@ NIM: (diisi sebelum dikumpulkan)</p>
 <li><p>Kesimpulan, Implikasi Kebijakan, dan Keterbatasan</p></li>
 </ol>
 </section>
-</section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
-<h1>1. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
+<section id="data-understanding">
+<h2>1. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
 <section id="latar-belakang">
-<h2>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<h3>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h3>
 <p>Informasi penggunaan dan tutupan lahan (<em>Land Use / Land Cover</em>, LULC) merupakan masukan utama bagi perencanaan tata ruang, pengendalian alih fungsi lahan pertanian, perlindungan ekosistem pesisir, dan pengelolaan sumber daya air. Pemetaan secara manual (digitasi visual) memerlukan waktu dan biaya besar, sedangkan citra satelit multispektral <strong>Sentinel-2</strong> tersedia gratis, beresolusi hingga 10 m, dan direkam berulang setiap beberapa hari. Kondisi tersebut menjadikan Sentinel-2 sesuai untuk klasifikasi lahan otomatis berbasis pembelajaran mesin di wilayah seluas Provinsi Jawa Timur.</p>
 </section>
 <section id="tujuan-analisis-land-use-and-land-cover-classification">
-<h2>1.2 Tujuan Analisis <em>Land Use and Land Cover Classification</em><a class="headerlink" href="#tujuan-analisis-land-use-and-land-cover-classification" title="Link to this heading">#</a></h2>
+<h3>1.2 Tujuan Analisis <em>Land Use and Land Cover Classification</em><a class="headerlink" href="#tujuan-analisis-land-use-and-land-cover-classification" title="Link to this heading">#</a></h3>
 <p>Istilah <em>land cover</em> merujuk pada tutupan fisik permukaan bumi (vegetasi, air, bangunan, tanah terbuka), sedangkan <em>land use</em> merujuk pada fungsi atau pemanfaatan lahan oleh manusia (misalnya sawah sebagai lahan produksi pangan, permukiman sebagai lahan tempat tinggal). Analisis ini memadukan keduanya melalui kelas-kelas yang dapat dibedakan secara spektral dan bermakna bagi kebijakan tata ruang.</p>
 <p>Tujuan analisis:</p>
 <ol class="arabic simple">
@@ -557,11 +543,11 @@ NIM: (diisi sebelum dikumpulkan)</p>
 </ol>
 </section>
 <section id="wilayah-studi">
-<h2>1.3 Wilayah Studi<a class="headerlink" href="#wilayah-studi" title="Link to this heading">#</a></h2>
+<h3>1.3 Wilayah Studi<a class="headerlink" href="#wilayah-studi" title="Link to this heading">#</a></h3>
 <p>Provinsi <strong>Jawa Timur</strong> (citra diunduh dengan kotak pembatas 110,8°–116,4° BT dan 8,9°–4,9° LS, kemudian hasil klasifikasi dipotong mengikuti batas administrasi provinsi). Bentang alamnya beragam: kompleks gunung api (Bromo-Tengger-Semeru, Arjuno-Welirang, Ijen), dataran persawahan, kawasan permukiman padat (Surabaya–Sidoarjo–Gresik), pesisir bermangrove, danau/waduk dan ranu (misalnya Ranu Pani, Ranu Klakah, dan Ranu Grati), serta Laut Jawa, Selat Madura, dan Samudra Hindia.</p>
 </section>
 <section id="acuan-klasifikasi-lahan-di-indonesia">
-<h2>1.4 Acuan Klasifikasi Lahan di Indonesia<a class="headerlink" href="#acuan-klasifikasi-lahan-di-indonesia" title="Link to this heading">#</a></h2>
+<h3>1.4 Acuan Klasifikasi Lahan di Indonesia<a class="headerlink" href="#acuan-klasifikasi-lahan-di-indonesia" title="Link to this heading">#</a></h3>
 <p>Klasifikasi pada tugas ini tidak dibatasi pada dua kelas (sawah dan non-sawah), melainkan dirujuk pada skema penutup lahan yang berlaku di Indonesia:</p>
 <ol class="arabic simple">
 <li><p><strong>SNI 7645-1:2014, Klasifikasi Penutup Lahan Bagian 1: Skala Kecil dan Menengah</strong> (Badan Standardisasi Nasional), yang merupakan penyempurnaan SNI 7645:2010. Standar ini menyusun kelas secara hierarkis, mulai dari kelompok daerah bervegetasi (termasuk daerah pertanian seperti sawah, serta hutan dan vegetasi lahan basah seperti mangrove) dan daerah tak bervegetasi (termasuk lahan terbangun dan perairan seperti laut serta danau/waduk).</p></li>
@@ -622,7 +608,7 @@ NIM: (diisi sebelum dikumpulkan)</p>
 </div></blockquote>
 </section>
 <section id="kelas-dan-jumlah-data">
-<h2>1.5 Kelas dan Jumlah Data<a class="headerlink" href="#kelas-dan-jumlah-data" title="Link to this heading">#</a></h2>
+<h3>1.5 Kelas dan Jumlah Data<a class="headerlink" href="#kelas-dan-jumlah-data" title="Link to this heading">#</a></h3>
 <p>Data referensi berupa <strong>shapefile poligon</strong> (satu berkas per kelas, sistem koordinat WGS84/EPSG:4326, wilayah Jawa Timur). <strong>Satu poligon dipandang sebagai satu sampel (unit analisis berbasis poligon)</strong>: nilai band dari seluruh piksel Sentinel-2 yang berada di dalam poligon dirata-ratakan (statistik zonal), sehingga satu poligon menghasilkan satu baris data berisi 18 fitur. Pendekatan ini lebih tahan terhadap <em>noise</em> piksel tunggal dibanding pengambilan satu titik pusat.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -674,7 +660,7 @@ NIM: (diisi sebelum dikumpulkan)</p>
 <p>Jumlah akhir setelah pemeriksaan kualitas data, jumlah data <em>training</em> dan <em>testing</em>, serta jumlah kelas ditampilkan pada bagian 2.3 dan 5.2. Pengaruh jumlah data per kelas terhadap akurasi diuji pada bagian 6.8.</p>
 </section>
 <section id="band-pada-sentinel-2a">
-<h2>1.6 Band pada Sentinel-2A<a class="headerlink" href="#band-pada-sentinel-2a" title="Link to this heading">#</a></h2>
+<h3>1.6 Band pada Sentinel-2A<a class="headerlink" href="#band-pada-sentinel-2a" title="Link to this heading">#</a></h3>
 <p>Sentinel-2A membawa sensor <strong>MSI (<em>MultiSpectral Instrument</em>)</strong> dengan <strong>13 band</strong> pada rentang cahaya tampak hingga inframerah gelombang pendek (SWIR), lebar sapuan 290 km, dan resolusi spasial 10 m, 20 m, atau 60 m bergantung pada band. Sentinel-2B dan Sentinel-2C memiliki spesifikasi band yang sama sehingga citra ketiganya dapat dikombinasikan.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -798,7 +784,7 @@ NIM: (diisi sebelum dikumpulkan)</p>
 <p>Band B1, B9, dan B10 tidak dipakai karena dirancang untuk koreksi atmosfer dan deteksi awan, bukan untuk membedakan jenis lahan. Produk yang digunakan adalah <strong>Sentinel-2 Level-2A (<em>Surface Reflectance</em>)</strong> dari <strong>Copernicus Data Space Ecosystem</strong> (untuk ekstraksi data latih) dan <strong>Google Earth Engine</strong> (untuk klasifikasi seluruh area studi), yaitu citra yang telah dikoreksi atmosfer sehingga nilainya berupa reflektansi permukaan (0 sampai 1).</p>
 </section>
 <section id="alur-kerja">
-<h2>1.7 Alur Kerja<a class="headerlink" href="#alur-kerja" title="Link to this heading">#</a></h2>
+<h3>1.7 Alur Kerja<a class="headerlink" href="#alur-kerja" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Shapefile poligon (6 kelas) → pemeriksaan kualitas data → ekstraksi nilai band Sentinel-2 per poligon via Copernicus (statistik zonal → CSV)
    → hitung indeks spektral → dataset fitur (CSV) → EDA
    → split training/testing → perbandingan 3 model (Extra Trees, Regresi Logistik, SVM) + eksperimen → model terbaik
@@ -809,10 +795,10 @@ NIM: (diisi sebelum dikumpulkan)</p>
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="data-collection">
-<h1>2. Data Collection<a class="headerlink" href="#data-collection" title="Link to this heading">#</a></h1>
+<section id="data-collection">
+<h2>2. Data Collection<a class="headerlink" href="#data-collection" title="Link to this heading">#</a></h2>
 <section id="persiapan-lingkungan-dan-konfigurasi">
-<h2>2.1 Persiapan Lingkungan dan Konfigurasi<a class="headerlink" href="#persiapan-lingkungan-dan-konfigurasi" title="Link to this heading">#</a></h2>
+<h3>2.1 Persiapan Lingkungan dan Konfigurasi<a class="headerlink" href="#persiapan-lingkungan-dan-konfigurasi" title="Link to this heading">#</a></h3>
 <p>Pembagian peran sumber citra pada notebook ini:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -857,9 +843,8 @@ NIM: (diisi sebelum dikumpulkan)</p>
 </div>
 </div>
 </div>
-</section>
 <section id="menghubungkan-google-drive">
-<h2>2.0 Menghubungkan Google Drive<a class="headerlink" href="#menghubungkan-google-drive" title="Link to this heading">#</a></h2>
+<h4>Menghubungkan Google Drive<a class="headerlink" href="#menghubungkan-google-drive" title="Link to this heading">#</a></h4>
 <p>Seluruh berkas masukan (ZIP shapefile) dan keluaran (CSV dataset, cache peta, folder <code class="docutils literal notranslate"><span class="pre">hasil/</span></code>) disimpan di Google Drive pada folder <code class="docutils literal notranslate"><span class="pre">MyDrive/sig_lulc</span></code>, sehingga tidak hilang saat runtime Colab ditutup. Letakkan <code class="docutils literal notranslate"><span class="pre">Sawah.zip</span></code>, <code class="docutils literal notranslate"><span class="pre">Bangunan.zip</span></code>, <code class="docutils literal notranslate"><span class="pre">Mangrove.zip</span></code>, <code class="docutils literal notranslate"><span class="pre">Lahan_Hijau.zip</span></code>, <code class="docutils literal notranslate"><span class="pre">Laut.zip</span></code>, <code class="docutils literal notranslate"><span class="pre">Danau.zip</span></code>, dan <code class="docutils literal notranslate"><span class="pre">dataset_poligon_sentinel2.csv</span></code> pada folder tersebut.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -974,8 +959,9 @@ NIM: (diisi sebelum dikumpulkan)</p>
 </div>
 </div>
 </section>
+</section>
 <section id="membaca-shapefile-dan-pemeriksaan-kualitas-data">
-<h2>2.2 Membaca Shapefile dan Pemeriksaan Kualitas Data<a class="headerlink" href="#membaca-shapefile-dan-pemeriksaan-kualitas-data" title="Link to this heading">#</a></h2>
+<h3>2.2 Membaca Shapefile dan Pemeriksaan Kualitas Data<a class="headerlink" href="#membaca-shapefile-dan-pemeriksaan-kualitas-data" title="Link to this heading">#</a></h3>
 <p>Setiap shapefile dibaca dan dikonversi ke <strong>WGS84 (EPSG:4326)</strong> bila sistem koordinatnya berbeda. Poligon yang tidak valid secara geometri diperbaiki dengan <code class="docutils literal notranslate"><span class="pre">buffer(0)</span></code>.</p>
 <p>Dilakukan pula <strong>pemeriksaan kualitas spasial</strong>: poligon yang titik representatifnya berada jauh di luar area studi (lebih dari <code class="docutils literal notranslate"><span class="pre">MARGIN_QA</span></code> derajat dari kotak <code class="docutils literal notranslate"><span class="pre">AOI</span></code>) dicurigai salah posisi (misalnya kesalahan digitasi) dan <strong>dikeluarkan dari dataset</strong>, karena label yang keliru akan menurunkan akurasi model. Toleransi diberikan agar poligon laut lepas di tepi area studi tidak ikut terbuang.</p>
 <div class="cell docutils container">
@@ -1238,7 +1224,7 @@ NIM: (diisi sebelum dikumpulkan)</p>
 </div>
 </section>
 <section id="pengambilan-citra-sentinel-2-dan-ekstraksi-fitur-per-poligon">
-<h2>2.3 Pengambilan Citra Sentinel-2 dan Ekstraksi Fitur per Poligon<a class="headerlink" href="#pengambilan-citra-sentinel-2-dan-ekstraksi-fitur-per-poligon" title="Link to this heading">#</a></h2>
+<h3>2.3 Pengambilan Citra Sentinel-2 dan Ekstraksi Fitur per Poligon<a class="headerlink" href="#pengambilan-citra-sentinel-2-dan-ekstraksi-fitur-per-poligon" title="Link to this heading">#</a></h3>
 <p>Citra diambil dengan <strong>Sentinel Hub Process API</strong> pada koleksi <strong>Sentinel-2 L2A</strong>. Pengolahan dijalankan di server Copernicus melalui <em>evalscript</em> dengan langkah berikut:</p>
 <ol class="arabic simple">
 <li><p><strong>Filter:</strong> periode tanggal dan persentase awan per scene (<code class="docutils literal notranslate"><span class="pre">MAX_CLOUD</span></code>). Opsi <code class="docutils literal notranslate"><span class="pre">HANYA_SENTINEL_2A</span></code> membuang citra satelit lain (2B/2C) berdasarkan nama produk.</p></li>
@@ -1680,11 +1666,11 @@ Poligon terekstraksi: 360 | valid (punya piksel bersih): 360 | dibuang (nodata/a
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="deskripsi-fitur-dan-rumusnya">
-<h1>3. Deskripsi Fitur dan Rumusnya<a class="headerlink" href="#deskripsi-fitur-dan-rumusnya" title="Link to this heading">#</a></h1>
+<section id="deskripsi-fitur-dan-rumusnya">
+<h2>3. Deskripsi Fitur dan Rumusnya<a class="headerlink" href="#deskripsi-fitur-dan-rumusnya" title="Link to this heading">#</a></h2>
 <p>Fitur yang dihasilkan berjumlah <strong>18</strong>, terdiri atas <strong>10 band asli</strong> (reflektansi) dan <strong>8 indeks spektral</strong> turunan. Notasi: <span class="math notranslate nohighlight">\(\rho_{B2}\)</span> adalah reflektansi band B2, dan seterusnya.</p>
 <section id="fitur-band-asli-10-fitur">
-<h2>3.1 Fitur Band Asli (10 fitur)<a class="headerlink" href="#fitur-band-asli-10-fitur" title="Link to this heading">#</a></h2>
+<h3>3.1 Fitur Band Asli (10 fitur)<a class="headerlink" href="#fitur-band-asli-10-fitur" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fitur</p></th>
@@ -1739,7 +1725,7 @@ Poligon terekstraksi: 360 | valid (punya piksel bersih): 360 | dibuang (nodata/a
 <p>Konversi dari nilai digital (DN) produk Level-2A ke reflektansi permukaan: <span class="math notranslate nohighlight">\(\rho = \dfrac{DN}{10000}\)</span>. Pada Sentinel Hub nilai sudah dikembalikan dalam bentuk reflektansi.</p>
 </section>
 <section id="fitur-indeks-spektral-8-fitur">
-<h2>3.2 Fitur Indeks Spektral (8 fitur)<a class="headerlink" href="#fitur-indeks-spektral-8-fitur" title="Link to this heading">#</a></h2>
+<h3>3.2 Fitur Indeks Spektral (8 fitur)<a class="headerlink" href="#fitur-indeks-spektral-8-fitur" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fitur</p></th>
@@ -1803,7 +1789,7 @@ Poligon terekstraksi: 360 | valid (punya piksel bersih): 360 | dibuang (nodata/a
 </div>
 </section>
 <section id="agregasi-statistik-zonal-unit-poligon">
-<h2>3.3 Agregasi Statistik Zonal (Unit Poligon)<a class="headerlink" href="#agregasi-statistik-zonal-unit-poligon" title="Link to this heading">#</a></h2>
+<h3>3.3 Agregasi Statistik Zonal (Unit Poligon)<a class="headerlink" href="#agregasi-statistik-zonal-unit-poligon" title="Link to this heading">#</a></h3>
 <p>Fitur setiap sampel adalah rata-rata nilai fitur piksel di dalam poligon. Untuk poligon <span class="math notranslate nohighlight">\(P\)</span> yang memuat <span class="math notranslate nohighlight">\(n\)</span> piksel ber-data-bersih dan fitur ke-<span class="math notranslate nohighlight">\(f\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\bar{x}_f(P)=\frac{1}{n}\sum_{j=1}^{n} x_{f,j}\]</div>
@@ -1817,10 +1803,10 @@ Poligon terekstraksi: 360 | valid (punya piksel bersih): 360 | dibuang (nodata/a
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="eksplorasi-data-eda">
-<h1>4. Eksplorasi Data (EDA)<a class="headerlink" href="#eksplorasi-data-eda" title="Link to this heading">#</a></h1>
+<section id="eksplorasi-data-eda">
+<h2>4. Eksplorasi Data (EDA)<a class="headerlink" href="#eksplorasi-data-eda" title="Link to this heading">#</a></h2>
 <section id="jumlah-data-per-kelas">
-<h2>4.1 Jumlah Data per Kelas<a class="headerlink" href="#jumlah-data-per-kelas" title="Link to this heading">#</a></h2>
+<h3>4.1 Jumlah Data per Kelas<a class="headerlink" href="#jumlah-data-per-kelas" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jml</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">NAMA_KELAS</span><span class="p">)</span>
@@ -2152,7 +2138,7 @@ Jumlah data  : 360 poligon
 </div>
 </section>
 <section id="statistik-deskriptif-fitur">
-<h2>4.2 Statistik Deskriptif Fitur<a class="headerlink" href="#statistik-deskriptif-fitur" title="Link to this heading">#</a></h2>
+<h3>4.2 Statistik Deskriptif Fitur<a class="headerlink" href="#statistik-deskriptif-fitur" title="Link to this heading">#</a></h3>
 <p>Tabel berikut menunjukkan rata-rata, simpangan baku, minimum, dan maksimum seluruh fitur. Rata-rata per kelas membantu melihat fitur yang membedakan kelas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2757,7 +2743,7 @@ Jumlah data  : 360 poligon
 </div>
 </section>
 <section id="tanda-tangan-spektral-spectral-signature">
-<h2>4.3 Tanda Tangan Spektral (<em>Spectral Signature</em>)<a class="headerlink" href="#tanda-tangan-spektral-spectral-signature" title="Link to this heading">#</a></h2>
+<h3>4.3 Tanda Tangan Spektral (<em>Spectral Signature</em>)<a class="headerlink" href="#tanda-tangan-spektral-spectral-signature" title="Link to this heading">#</a></h3>
 <p>Grafik memperlihatkan rata-rata reflektansi tiap kelas pada tiap band. Pola yang lazim diharapkan:</p>
 <ul class="simple">
 <li><p><strong>Vegetasi (sawah, lahan hijau, mangrove):</strong> pantulan rendah di merah (B4, klorofil menyerap), melonjak tajam di <em>red edge</em> dan NIR (B5–B8A), lalu turun di SWIR.</p></li>
@@ -2784,7 +2770,7 @@ Jumlah data  : 360 poligon
 </div>
 </section>
 <section id="sebaran-indeks-spektral-per-kelas">
-<h2>4.4 Sebaran Indeks Spektral per Kelas<a class="headerlink" href="#sebaran-indeks-spektral-per-kelas" title="Link to this heading">#</a></h2>
+<h3>4.4 Sebaran Indeks Spektral per Kelas<a class="headerlink" href="#sebaran-indeks-spektral-per-kelas" title="Link to this heading">#</a></h3>
 <p><em>Boxplot</em> menunjukkan seberapa baik sebuah indeks memisahkan kelas. Indeks yang kotaknya tidak saling tumpang tindih antar kelas merupakan pembeda yang baik.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2802,7 +2788,7 @@ Jumlah data  : 360 poligon
 </div>
 </section>
 <section id="korelasi-antar-fitur">
-<h2>4.5 Korelasi Antar Fitur<a class="headerlink" href="#korelasi-antar-fitur" title="Link to this heading">#</a></h2>
+<h3>4.5 Korelasi Antar Fitur<a class="headerlink" href="#korelasi-antar-fitur" title="Link to this heading">#</a></h3>
 <p>Fitur berasal dari band yang sama sehingga saling berkorelasi, terutama kelompok indeks vegetasi. Korelasi tinggi tidak melarang penggunaan model berbasis pohon (<em>Extra Trees</em>), namun memengaruhi interpretasi tingkat kepentingan fitur: kepentingan dapat terbagi di antara fitur yang berkorelasi. Model berbasis kernel (SVM) dan model linear (Regresi Logistik) memerlukan penskalaan fitur, sehingga seluruh model pada bagian 6 dibungkus dalam <em>pipeline</em> dengan <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2820,14 +2806,14 @@ Jumlah data  : 360 poligon
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="pembagian-data-training-dan-testing">
-<h1>5. Pembagian Data Training dan Testing<a class="headerlink" href="#pembagian-data-training-dan-testing" title="Link to this heading">#</a></h1>
+<section id="pembagian-data-training-dan-testing">
+<h2>5. Pembagian Data Training dan Testing<a class="headerlink" href="#pembagian-data-training-dan-testing" title="Link to this heading">#</a></h2>
 <section id="prinsip">
-<h2>5.1 Prinsip<a class="headerlink" href="#prinsip" title="Link to this heading">#</a></h2>
+<h3>5.1 Prinsip<a class="headerlink" href="#prinsip" title="Link to this heading">#</a></h3>
 <p>Data dibagi menjadi <strong>80% data training</strong> (untuk membangun dan menyetel model) dan <strong>20% data testing</strong> (untuk menguji model yang sudah final pada data yang belum pernah dilihat). Pembagian memakai <code class="docutils literal notranslate"><span class="pre">stratify=y</span></code> agar proporsi keenam kelas sama pada kedua bagian. <strong>Seluruh pemilihan model, pemilihan fitur, dan penyetelan hyperparameter pada bagian 6 hanya memakai data training</strong>; data testing baru digunakan satu kali pada evaluasi akhir agar penilaian tidak bias.</p>
 </section>
 <section id="jumlah-data-training-dan-testing">
-<h2>5.2 Jumlah Data Training dan Testing<a class="headerlink" href="#jumlah-data-training-dan-testing" title="Link to this heading">#</a></h2>
+<h3>5.2 Jumlah Data Training dan Testing<a class="headerlink" href="#jumlah-data-training-dan-testing" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">FITUR_SEMUA</span><span class="p">]</span>
@@ -3019,10 +3005,10 @@ Jumlah data testing : 72 (20%)
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="pemodelan-perbandingan-model-dan-eksperimen">
-<h1>6. Pemodelan, Perbandingan Model, dan Eksperimen<a class="headerlink" href="#pemodelan-perbandingan-model-dan-eksperimen" title="Link to this heading">#</a></h1>
+<section id="pemodelan-perbandingan-model-dan-eksperimen">
+<h2>6. Pemodelan, Perbandingan Model, dan Eksperimen<a class="headerlink" href="#pemodelan-perbandingan-model-dan-eksperimen" title="Link to this heading">#</a></h2>
 <section id="model-kandidat">
-<h2>6.1 Model Kandidat<a class="headerlink" href="#model-kandidat" title="Link to this heading">#</a></h2>
+<h3>6.1 Model Kandidat<a class="headerlink" href="#model-kandidat" title="Link to this heading">#</a></h3>
 <p>Tiga model dibandingkan, dan model dengan akurasi validasi silang tertinggi dipilih sebagai model akhir. Seluruh model dijalankan dalam <em>pipeline</em> <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> → model.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -3054,7 +3040,7 @@ Jumlah data testing : 72 (20%)
 </ul>
 </section>
 <section id="perbandingan-model-dengan-validasi-silang-berulang-data-training">
-<h2>6.2 Perbandingan Model dengan Validasi Silang Berulang (Data Training)<a class="headerlink" href="#perbandingan-model-dengan-validasi-silang-berulang-data-training" title="Link to this heading">#</a></h2>
+<h3>6.2 Perbandingan Model dengan Validasi Silang Berulang (Data Training)<a class="headerlink" href="#perbandingan-model-dengan-validasi-silang-berulang-data-training" title="Link to this heading">#</a></h3>
 <p>Karena data relatif sedikit, kinerja dinilai dengan <em><strong>Repeated Stratified 5-Fold Cross-Validation</strong></em> (5 pengulangan = 25 evaluasi) pada data training, sehingga hasilnya lebih stabil daripada satu kali pembagian.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3237,7 +3223,7 @@ Jumlah data testing : 72 (20%)
 </div>
 </section>
 <section id="eksperimen-kombinasi-fitur">
-<h2>6.3 Eksperimen Kombinasi Fitur<a class="headerlink" href="#eksperimen-kombinasi-fitur" title="Link to this heading">#</a></h2>
+<h3>6.3 Eksperimen Kombinasi Fitur<a class="headerlink" href="#eksperimen-kombinasi-fitur" title="Link to this heading">#</a></h3>
 <p>Eksperimen ini menguji apakah penambahan indeks spektral dan band meningkatkan kinerja dibanding hanya memakai band mentah atau indeks saja. Pengujian memakai model terbaik pada pengaturan awal dan data training.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3422,7 +3408,7 @@ Jumlah data testing : 72 (20%)
 </div>
 </section>
 <section id="penyetelan-hyperparameter-grid-search">
-<h2>6.4 Penyetelan <em>Hyperparameter</em> (Grid Search)<a class="headerlink" href="#penyetelan-hyperparameter-grid-search" title="Link to this heading">#</a></h2>
+<h3>6.4 Penyetelan <em>Hyperparameter</em> (Grid Search)<a class="headerlink" href="#penyetelan-hyperparameter-grid-search" title="Link to this heading">#</a></h3>
 <p>Ketiga model disetel dengan <em>Grid Search</em> pada kombinasi fitur terbaik, menggunakan validasi silang berulang yang sama pada data training.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3584,7 +3570,7 @@ Jumlah data testing : 72 (20%)
 </div>
 </section>
 <section id="ringkasan-hasil-penyetelan">
-<h2>6.5 Ringkasan Hasil Penyetelan<a class="headerlink" href="#ringkasan-hasil-penyetelan" title="Link to this heading">#</a></h2>
+<h3>6.5 Ringkasan Hasil Penyetelan<a class="headerlink" href="#ringkasan-hasil-penyetelan" title="Link to this heading">#</a></h3>
 <p>Grafik membandingkan akurasi validasi silang sebelum penyetelan (18 fitur) dan sesudah penyetelan (skenario fitur terbaik pada bagian 6.3).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3605,7 +3591,7 @@ Jumlah data testing : 72 (20%)
 </div>
 </section>
 <section id="pemilihan-model-akhir">
-<h2>6.6 Pemilihan Model Akhir<a class="headerlink" href="#pemilihan-model-akhir" title="Link to this heading">#</a></h2>
+<h3>6.6 Pemilihan Model Akhir<a class="headerlink" href="#pemilihan-model-akhir" title="Link to this heading">#</a></h3>
 <p>Kandidat akhir (tiga model hasil penyetelan) dinilai ulang dengan validasi silang yang <strong>menggunakan pembagian acak berbeda</strong> dari yang dipakai saat penyetelan, untuk mengurangi bias seleksi. Model dengan rata-rata akurasi validasi silang tertinggi dipilih sebagai <strong>model akhir</strong>. Data testing belum digunakan sampai tahap ini.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3768,7 +3754,7 @@ Fitur (18): ['B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B8A', 'B11', 'B12', 'NDV
 </div>
 </section>
 <section id="evaluasi-model-akhir-pada-data-testing">
-<h2>6.7 Evaluasi Model Akhir pada Data Testing<a class="headerlink" href="#evaluasi-model-akhir-pada-data-testing" title="Link to this heading">#</a></h2>
+<h3>6.7 Evaluasi Model Akhir pada Data Testing<a class="headerlink" href="#evaluasi-model-akhir-pada-data-testing" title="Link to this heading">#</a></h3>
 <p>Model akhir diuji <strong>satu kali</strong> pada data testing. Karena jumlah data testing kecil, disertakan pula selang kepercayaan 95% (pendekatan normal) untuk akurasi, agar tingkat ketidakpastian hasil terlihat.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3823,6 +3809,7 @@ Perairan Terbuka (Laut)       1.00      1.00      1.00        12
 <img alt="_images/653b140c5ccecd2f56e5535df768a204280a288b2a97f2e83620ca258e4ca73a.png" src="_images/653b140c5ccecd2f56e5535df768a204280a288b2a97f2e83620ca258e4ca73a.png" />
 </div>
 </div>
+</section>
 <section id="perbandingan-seluruh-model-pada-data-testing">
 <h3>Perbandingan Seluruh Model pada Data Testing<a class="headerlink" href="#perbandingan-seluruh-model-pada-data-testing" title="Link to this heading">#</a></h3>
 <p>Tabel berikut merangkum seluruh model (pengaturan awal dan hasil penyetelan untuk ketiga model). Kolom <strong>Akurasi Testing</strong> disajikan <strong>hanya sebagai informasi</strong>; pemilihan model akhir tetap didasarkan pada validasi silang data training (bagian 6.6).</p>
@@ -4282,9 +4269,8 @@ Perairan Terbuka (Laut)       1.00      1.00      1.00        12
 </div>
 </div>
 </section>
-</section>
 <section id="eksperimen-jumlah-data-dan-rasio-pembagian">
-<h2>6.8 Eksperimen Jumlah Data dan Rasio Pembagian<a class="headerlink" href="#eksperimen-jumlah-data-dan-rasio-pembagian" title="Link to this heading">#</a></h2>
+<h3>6.8 Eksperimen Jumlah Data dan Rasio Pembagian<a class="headerlink" href="#eksperimen-jumlah-data-dan-rasio-pembagian" title="Link to this heading">#</a></h3>
 <p>Dua eksperimen tambahan menjawab pertanyaan “berapa banyak data yang diperlukan”:</p>
 <ol class="arabic simple">
 <li><p><strong>Jumlah poligon training per kelas.</strong> Pada setiap lipatan validasi silang (data training), model dilatih dengan hanya <span class="math notranslate nohighlight">\(n\)</span> poligon per kelas, lalu diuji pada lipatan uji. Hasilnya menunjukkan apakah penambahan poligon masih meningkatkan akurasi (kurva belajar).</p></li>
@@ -4623,10 +4609,10 @@ Perairan Terbuka (Laut)       1.00      1.00      1.00        12
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="peta-hasil-klasifikasi-folium-google-satellite">
-<h1>7. Peta Hasil Klasifikasi (Folium + Google Satellite)<a class="headerlink" href="#peta-hasil-klasifikasi-folium-google-satellite" title="Link to this heading">#</a></h1>
+<section id="peta-hasil-klasifikasi-folium-google-satellite">
+<h2>7. Peta Hasil Klasifikasi (Folium + Google Satellite)<a class="headerlink" href="#peta-hasil-klasifikasi-folium-google-satellite" title="Link to this heading">#</a></h2>
 <section id="klasifikasi-seluruh-jawa-timur-per-sel-google-earth-engine">
-<h2>7.1 Klasifikasi Seluruh Jawa Timur per Sel (Google Earth Engine)<a class="headerlink" href="#klasifikasi-seluruh-jawa-timur-per-sel-google-earth-engine" title="Link to this heading">#</a></h2>
+<h3>7.1 Klasifikasi Seluruh Jawa Timur per Sel (Google Earth Engine)<a class="headerlink" href="#klasifikasi-seluruh-jawa-timur-per-sel-google-earth-engine" title="Link to this heading">#</a></h3>
 <p>Agar konsisten dengan data latih yang berbasis poligon, area studi dibagi menjadi <strong>sel grid</strong> berukuran <code class="docutils literal notranslate"><span class="pre">CELL_PX</span> <span class="pre">×</span> <span class="pre">CELL_PX</span></code> piksel pada resolusi <code class="docutils literal notranslate"><span class="pre">SKALA_PETA</span></code> (bawaan: 4 × 120 m = <strong>480 m</strong>). Setiap sel diperlakukan sebagai satu poligon: fitur sel dihitung dengan fungsi yang sama seperti statistik zonal data latih (rata-rata 18 fitur piksel di dalam sel), kemudian diklasifikasikan oleh model akhir.</p>
 <p><strong>Citra seluruh area studi diambil dari Google Earth Engine (GEE), bukan Copernicus</strong>, sehingga kuota Copernicus tidak terpakai pada tahap ini. Alurnya:</p>
 <ol class="arabic simple">
@@ -4841,7 +4827,7 @@ Ukuran grid hasil: (928, 1299) | sel tanpa data: 953729
 </div>
 </section>
 <section id="luas-tiap-kelas">
-<h2>7.2 Luas Tiap Kelas<a class="headerlink" href="#luas-tiap-kelas" title="Link to this heading">#</a></h2>
+<h3>7.2 Luas Tiap Kelas<a class="headerlink" href="#luas-tiap-kelas" title="Link to this heading">#</a></h3>
 <p>Luas setiap sel dihitung dari ukuran sel dan lintang barisnya (<span class="math notranslate nohighlight">\(\text{luas} = \Delta_{\text{sel}}^2\cos\varphi\)</span>), kemudian dijumlahkan per kelas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5079,7 +5065,7 @@ Ukuran grid hasil: (928, 1299) | sel tanpa data: 953729
 </div>
 </section>
 <section id="vektorisasi-hasil-klasifikasi-menjadi-poligon">
-<h2>7.3 Vektorisasi Hasil Klasifikasi menjadi Poligon<a class="headerlink" href="#vektorisasi-hasil-klasifikasi-menjadi-poligon" title="Link to this heading">#</a></h2>
+<h3>7.3 Vektorisasi Hasil Klasifikasi menjadi Poligon<a class="headerlink" href="#vektorisasi-hasil-klasifikasi-menjadi-poligon" title="Link to this heading">#</a></h3>
 <p>Sel-sel bertetangga yang berkelas sama digabung menjadi poligon (<code class="docutils literal notranslate"><span class="pre">rasterio.features.shapes</span></code>), <strong>dihaluskan</strong> (sudut kotak sel dibulatkan, dapat dimatikan dengan <code class="docutils literal notranslate"><span class="pre">HALUSKAN_PETA</span> <span class="pre">=</span> <span class="pre">False</span></code>), <strong>dipotong mengikuti batas Provinsi Jawa Timur</strong>, lalu disederhanakan dan dibulatkan koordinatnya agar berkas peta tetap ringan. Satu lapisan (<em>layer</em>) dibuat untuk setiap kelas.</p>
 <blockquote>
 <div><p>Bila ingin bentuk yang lebih rinci, kecilkan <code class="docutils literal notranslate"><span class="pre">CELL_PX</span></code> (misalnya 2 untuk sel 240 m). Jumlah ubin dan waktu unduh dari GEE akan bertambah.</p>
@@ -5139,7 +5125,7 @@ Ukuran GeoJSON total (MB): 4.8
 </div>
 </section>
 <section id="peta-interaktif-folium-dengan-latar-google-satellite">
-<h2>7.4 Peta Interaktif Folium dengan Latar Google Satellite<a class="headerlink" href="#peta-interaktif-folium-dengan-latar-google-satellite" title="Link to this heading">#</a></h2>
+<h3>7.4 Peta Interaktif Folium dengan Latar Google Satellite<a class="headerlink" href="#peta-interaktif-folium-dengan-latar-google-satellite" title="Link to this heading">#</a></h3>
 <p>Hasil klasifikasi dan sampel referensi <strong>dipisahkan menjadi dua peta</strong>, masing-masing dengan gaya dan legenda sendiri:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -5750,10 +5736,10 @@ Peta sampel referensi disimpan: /content/drive/MyDrive/sig_lulc/hasil/peta_sampe
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="keluaran-untuk-sistem-informasi-streamlit-dan-web-statis">
-<h1>8. Keluaran untuk Sistem Informasi (Streamlit) dan Web Statis<a class="headerlink" href="#keluaran-untuk-sistem-informasi-streamlit-dan-web-statis" title="Link to this heading">#</a></h1>
+<section id="keluaran-untuk-sistem-informasi-streamlit-dan-web-statis">
+<h2>8. Keluaran untuk Sistem Informasi (Streamlit) dan Web Statis<a class="headerlink" href="#keluaran-untuk-sistem-informasi-streamlit-dan-web-statis" title="Link to this heading">#</a></h2>
 <section id="menyimpan-ringkasan-dan-dataset">
-<h2>8.1 Menyimpan Ringkasan dan Dataset<a class="headerlink" href="#menyimpan-ringkasan-dan-dataset" title="Link to this heading">#</a></h2>
+<h3>8.1 Menyimpan Ringkasan dan Dataset<a class="headerlink" href="#menyimpan-ringkasan-dan-dataset" title="Link to this heading">#</a></h3>
 <p>Sel berikut menyimpan seluruh keluaran yang dibaca aplikasi Streamlit pada folder <code class="docutils literal notranslate"><span class="pre">hasil/</span></code>: ringkasan (JSON), dataset poligon, tabel luas, perbandingan model, laporan klasifikasi, dan gambar evaluasi (yang sudah disimpan pada sel-sel sebelumnya).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5793,7 +5779,7 @@ Peta sampel referensi disimpan: /content/drive/MyDrive/sig_lulc/hasil/peta_sampe
 </div>
 </section>
 <section id="ekspor-notebook-sebagai-web-statis">
-<h2>8.2 Ekspor Notebook sebagai Web Statis<a class="headerlink" href="#ekspor-notebook-sebagai-web-statis" title="Link to this heading">#</a></h2>
+<h3>8.2 Ekspor Notebook sebagai Web Statis<a class="headerlink" href="#ekspor-notebook-sebagai-web-statis" title="Link to this heading">#</a></h3>
 <p>Proses analisis (seluruh sel beserta keluarannya) dipublikasikan sebagai <strong>halaman HTML statis</strong> menggunakan <code class="docutils literal notranslate"><span class="pre">nbconvert</span></code>. Halaman ini kemudian ditampilkan pada menu <strong>Proses Analisis</strong> di aplikasi Streamlit.</p>
 <p>Urutan pengerjaan:</p>
 <ol class="arabic simple">
@@ -5806,7 +5792,7 @@ Peta sampel referensi disimpan: /content/drive/MyDrive/sig_lulc/hasil/peta_sampe
 </div>
 </section>
 <section id="menjalankan-dan-men-deploy-sistem-informasi-streamlit">
-<h2>8.2 Menjalankan dan Men-<em>deploy</em> Sistem Informasi Streamlit<a class="headerlink" href="#menjalankan-dan-men-deploy-sistem-informasi-streamlit" title="Link to this heading">#</a></h2>
+<h3>8.3 Menjalankan dan Men-<em>deploy</em> Sistem Informasi Streamlit<a class="headerlink" href="#menjalankan-dan-men-deploy-sistem-informasi-streamlit" title="Link to this heading">#</a></h3>
 <p>Struktur folder yang dibutuhkan (berkas <code class="docutils literal notranslate"><span class="pre">app.py</span></code> dan <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> disertakan terpisah):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>repo-sig-lulc/
 ├── app.py
@@ -5833,8 +5819,8 @@ Peta sampel referensi disimpan: /content/drive/MyDrive/sig_lulc/hasil/peta_sampe
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="kesimpulan-implikasi-kebijakan-dan-keterbatasan">
-<h1>9. Kesimpulan, Implikasi Kebijakan, dan Keterbatasan<a class="headerlink" href="#kesimpulan-implikasi-kebijakan-dan-keterbatasan" title="Link to this heading">#</a></h1>
+<section id="kesimpulan-implikasi-kebijakan-dan-keterbatasan">
+<h2>9. Kesimpulan, Implikasi Kebijakan, dan Keterbatasan<a class="headerlink" href="#kesimpulan-implikasi-kebijakan-dan-keterbatasan" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terbaik_rasio</span> <span class="o">=</span> <span class="n">tab_rasio</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"Akurasi rata-rata"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -5871,7 +5857,7 @@ Peta sampel referensi disimpan: /content/drive/MyDrive/sig_lulc/hasil/peta_sampe
 </div>
 </div>
 <section id="implikasi-kebijakan">
-<h2>9.1 Implikasi Kebijakan<a class="headerlink" href="#implikasi-kebijakan" title="Link to this heading">#</a></h2>
+<h3>9.1 Implikasi Kebijakan<a class="headerlink" href="#implikasi-kebijakan" title="Link to this heading">#</a></h3>
 <p>Peta dan statistik luas pada notebook ini dapat dipakai sebagai <strong>bahan tinjauan awal</strong> (bukan peta resmi) untuk kebijakan penataan ruang. Tabel berikut mengaitkan setiap kelas dengan kebijakan yang relevan.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -5913,7 +5899,7 @@ Peta sampel referensi disimpan: /content/drive/MyDrive/sig_lulc/hasil/peta_sampe
 </div></blockquote>
 </section>
 <section id="keterbatasan">
-<h2>9.2 Keterbatasan<a class="headerlink" href="#keterbatasan" title="Link to this heading">#</a></h2>
+<h3>9.2 Keterbatasan<a class="headerlink" href="#keterbatasan" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Jumlah data dan uji.</strong> Data berjumlah ratusan poligon sehingga data testing kecil; selang kepercayaan akurasi cukup lebar. Selisih akurasi antar-model yang kecil (misalnya 1–2 poin persen) belum tentu bermakna secara statistik.</p></li>
 <li><p><strong>Autokorelasi spasial.</strong> Poligon yang berdekatan memiliki karakteristik spektral serupa. Pembagian acak data training/testing dapat menghasilkan akurasi yang lebih optimistis dibanding pengujian pada wilayah yang benar-benar terpisah.</p></li>
@@ -5925,6 +5911,7 @@ Peta sampel referensi disimpan: /content/drive/MyDrive/sig_lulc/hasil/peta_sampe
 <li><p><strong>Basemap Google.</strong> Ubin Google Satellite dipakai untuk visualisasi dan tunduk pada ketentuan layanan Google; untuk publikasi luas dapat diganti dengan peta dasar berlisensi terbuka.</p></li>
 <li><p><strong>Perbedaan sumber citra.</strong> Data latih diekstrak dari Copernicus (Sentinel Hub Process API), sedangkan peta dibuat dari Google Earth Engine (<code class="docutils literal notranslate"><span class="pre">COPERNICUS/S2_SR_HARMONIZED</span></code>). Keduanya Sentinel-2 L2A, tetapi komposit median per orbit (Sentinel Hub) dan per <em>scene</em> (GEE) dapat berbeda sedikit sehingga fitur sel tidak persis sama dengan fitur poligon latih.</p></li>
 </ol>
+</section>
 </section>
 </section>
 
@@ -5985,81 +5972,77 @@ Peta sampel referensi disimpan: /content/drive/MyDrive/sig_lulc/hasil/peta_sampe
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Klasifikasi Penggunaan dan Tutupan Lahan (<em>Land Use / Land Cover</em>) Jawa Timur</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citra-sentinel-2-pembelajaran-mesin-berbasis-poligon-peta-folium-google-satellite-sistem-informasi-streamlit">Citra Sentinel-2 + Pembelajaran Mesin Berbasis Poligon + Peta Folium (Google Satellite) + Sistem Informasi Streamlit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">1. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis-land-use-and-land-cover-classification">1.2 Tujuan Analisis <em>Land Use and Land Cover Classification</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-studi">1.3 Wilayah Studi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-di-indonesia">1.4 Acuan Klasifikasi Lahan di Indonesia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelas-dan-jumlah-data">1.5 Kelas dan Jumlah Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#band-pada-sentinel-2a">1.6 Band pada Sentinel-2A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">1.7 Alur Kerja</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">1. Data Understanding</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis-land-use-and-land-cover-classification">1.2 Tujuan Analisis <em>Land Use and Land Cover Classification</em></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-studi">1.3 Wilayah Studi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-di-indonesia">1.4 Acuan Klasifikasi Lahan di Indonesia</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelas-dan-jumlah-data">1.5 Kelas dan Jumlah Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-pada-sentinel-2a">1.6 Band pada Sentinel-2A</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">1.7 Alur Kerja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection">2. Data Collection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-dan-konfigurasi">2.1 Persiapan Lingkungan dan Konfigurasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-google-drive">Menghubungkan Google Drive</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection">2. Data Collection</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-dan-konfigurasi">2.1 Persiapan Lingkungan dan Konfigurasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-google-drive">2.0 Menghubungkan Google Drive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-shapefile-dan-pemeriksaan-kualitas-data">2.2 Membaca Shapefile dan Pemeriksaan Kualitas Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-citra-sentinel-2-dan-ekstraksi-fitur-per-poligon">2.3 Pengambilan Citra Sentinel-2 dan Ekstraksi Fitur per Poligon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-shapefile-dan-pemeriksaan-kualitas-data">2.2 Membaca Shapefile dan Pemeriksaan Kualitas Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-citra-sentinel-2-dan-ekstraksi-fitur-per-poligon">2.3 Pengambilan Citra Sentinel-2 dan Ekstraksi Fitur per Poligon</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur-dan-rumusnya">3. Deskripsi Fitur dan Rumusnya</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-band-asli-10-fitur">3.1 Fitur Band Asli (10 fitur)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-indeks-spektral-8-fitur">3.2 Fitur Indeks Spektral (8 fitur)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-statistik-zonal-unit-poligon">3.3 Agregasi Statistik Zonal (Unit Poligon)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur-dan-rumusnya">3. Deskripsi Fitur dan Rumusnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-band-asli-10-fitur">3.1 Fitur Band Asli (10 fitur)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-indeks-spektral-8-fitur">3.2 Fitur Indeks Spektral (8 fitur)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-statistik-zonal-unit-poligon">3.3 Agregasi Statistik Zonal (Unit Poligon)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda">4. Eksplorasi Data (EDA)</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-per-kelas">4.1 Jumlah Data per Kelas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-fitur">4.2 Statistik Deskriptif Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tanda-tangan-spektral-spectral-signature">4.3 Tanda Tangan Spektral (<em>Spectral Signature</em>)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-indeks-spektral-per-kelas">4.4 Sebaran Indeks Spektral per Kelas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-fitur">4.5 Korelasi Antar Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda">4. Eksplorasi Data (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-per-kelas">4.1 Jumlah Data per Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-fitur">4.2 Statistik Deskriptif Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tanda-tangan-spektral-spectral-signature">4.3 Tanda Tangan Spektral (<em>Spectral Signature</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sebaran-indeks-spektral-per-kelas">4.4 Sebaran Indeks Spektral per Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-fitur">4.5 Korelasi Antar Fitur</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-training-dan-testing">5. Pembagian Data Training dan Testing</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prinsip">5.1 Prinsip</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-training-dan-testing">5.2 Jumlah Data Training dan Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-data-training-dan-testing">5. Pembagian Data Training dan Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prinsip">5.1 Prinsip</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-training-dan-testing">5.2 Jumlah Data Training dan Testing</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-perbandingan-model-dan-eksperimen">6. Pemodelan, Perbandingan Model, dan Eksperimen</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-kandidat">6.1 Model Kandidat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model-dengan-validasi-silang-berulang-data-training">6.2 Perbandingan Model dengan Validasi Silang Berulang (Data Training)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-kombinasi-fitur">6.3 Eksperimen Kombinasi Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyetelan-hyperparameter-grid-search">6.4 Penyetelan <em>Hyperparameter</em> (Grid Search)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil-penyetelan">6.5 Ringkasan Hasil Penyetelan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-model-akhir">6.6 Pemilihan Model Akhir</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-akhir-pada-data-testing">6.7 Evaluasi Model Akhir pada Data Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-perbandingan-model-dan-eksperimen">6. Pemodelan, Perbandingan Model, dan Eksperimen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-kandidat">6.1 Model Kandidat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model-dengan-validasi-silang-berulang-data-training">6.2 Perbandingan Model dengan Validasi Silang Berulang (Data Training)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-kombinasi-fitur">6.3 Eksperimen Kombinasi Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyetelan-hyperparameter-grid-search">6.4 Penyetelan <em>Hyperparameter</em> (Grid Search)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil-penyetelan">6.5 Ringkasan Hasil Penyetelan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-model-akhir">6.6 Pemilihan Model Akhir</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-akhir-pada-data-testing">6.7 Evaluasi Model Akhir pada Data Testing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-seluruh-model-pada-data-testing">Perbandingan Seluruh Model pada Data Testing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kepentingan-fitur-permutation-importance">Kepentingan Fitur (<em>Permutation Importance</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-jumlah-data-dan-rasio-pembagian">6.8 Eksperimen Jumlah Data dan Rasio Pembagian</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-jumlah-data-dan-rasio-pembagian">6.8 Eksperimen Jumlah Data dan Rasio Pembagian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi-folium-google-satellite">7. Peta Hasil Klasifikasi (Folium + Google Satellite)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-seluruh-jawa-timur-per-sel-google-earth-engine">7.1 Klasifikasi Seluruh Jawa Timur per Sel (Google Earth Engine)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#luas-tiap-kelas">7.2 Luas Tiap Kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vektorisasi-hasil-klasifikasi-menjadi-poligon">7.3 Vektorisasi Hasil Klasifikasi menjadi Poligon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-folium-dengan-latar-google-satellite">7.4 Peta Interaktif Folium dengan Latar Google Satellite</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi-folium-google-satellite">7. Peta Hasil Klasifikasi (Folium + Google Satellite)</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-seluruh-jawa-timur-per-sel-google-earth-engine">7.1 Klasifikasi Seluruh Jawa Timur per Sel (Google Earth Engine)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#luas-tiap-kelas">7.2 Luas Tiap Kelas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vektorisasi-hasil-klasifikasi-menjadi-poligon">7.3 Vektorisasi Hasil Klasifikasi menjadi Poligon</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-folium-dengan-latar-google-satellite">7.4 Peta Interaktif Folium dengan Latar Google Satellite</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keluaran-untuk-sistem-informasi-streamlit-dan-web-statis">8. Keluaran untuk Sistem Informasi (Streamlit) dan Web Statis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-ringkasan-dan-dataset">8.1 Menyimpan Ringkasan dan Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ekspor-notebook-sebagai-web-statis">8.2 Ekspor Notebook sebagai Web Statis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-dan-men-deploy-sistem-informasi-streamlit">8.3 Menjalankan dan Men-<em>deploy</em> Sistem Informasi Streamlit</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#keluaran-untuk-sistem-informasi-streamlit-dan-web-statis">8. Keluaran untuk Sistem Informasi (Streamlit) dan Web Statis</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-ringkasan-dan-dataset">8.1 Menyimpan Ringkasan dan Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekspor-notebook-sebagai-web-statis">8.2 Ekspor Notebook sebagai Web Statis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-dan-men-deploy-sistem-informasi-streamlit">8.2 Menjalankan dan Men-<em>deploy</em> Sistem Informasi Streamlit</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-implikasi-kebijakan-dan-keterbatasan">9. Kesimpulan, Implikasi Kebijakan, dan Keterbatasan</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implikasi-kebijakan">9.1 Implikasi Kebijakan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan">9.2 Keterbatasan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-implikasi-kebijakan-dan-keterbatasan">9. Kesimpulan, Implikasi Kebijakan, dan Keterbatasan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implikasi-kebijakan">9.1 Implikasi Kebijakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan">9.2 Keterbatasan</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
